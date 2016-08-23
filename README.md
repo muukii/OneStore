@@ -12,8 +12,8 @@
 **Basic**
 
 ```swift
-let name = Defaults<String>("name")
-let age = Defaults<Int>("age")
+let name = OneStore<String>("name")
+let age = OneStore<Int>("age")
 
 name.value = "muukii"
 age.value = 18
@@ -22,9 +22,9 @@ age.value = 18
 **Specify Stack**
 
 ```swift
-let stack = Stack(userDefaults: NSUserDefaults.standardUserDefaults(), namespace: "me")
-let name = Defaults<String>("name", stack: stack)
-let age = Defaults<Int>("age", stack: stack)
+let stack = Stack(userDefaults: NSUserDefaults(suiteName: "group.me.muukii.Fil")!, namespace: "me")
+let name = OneStore<String>("name", stack: stack)
+let age = OneStore<Int>("age", stack: stack)
 
 name.value = "muukii"
 age.value = 18
@@ -33,7 +33,7 @@ age.value = 18
 **Remove object**
 
 ```swift
-let name = Defaults<String>("name", stack: stack)
+let name = OneStore<String>("name", stack: stack)
 name.value = nil
 ```
 
@@ -42,7 +42,7 @@ name.value = nil
 ```swift
 
 let stack = Stack(userDefaults: NSUserDefaults.standardUserDefaults(), namespace: "me")
-let name = Defaults<String>("name", stack: stack)
+let name = OneStore<String>("name", stack: stack)
 
 stack.removeAllObjectsOnNamespace()
 /* or */
@@ -55,8 +55,8 @@ name.stack.removeAllObjectsOnNamespace()
 
 enum Me {
 
-    static let name = Defaults<String>("name", stack: Me.stack)
-    static let age = Defaults<Int>("age", stack: Me.stack)
+    static let name = OneStore<String>("name", stack: Me.stack)
+    static let age = OneStore<Int>("age", stack: Me.stack)
 
     private static let stack = Stack(userDefaults: NSUserDefaults.standardUserDefaults(), namespace: "me")
 }

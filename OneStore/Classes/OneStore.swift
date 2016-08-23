@@ -22,7 +22,7 @@
 
 import Foundation
 
-public class Defaults<T: DefaultsValueProtocol> {
+public class OneStore<T: OneStoreValueProtocol> {
     
     public let storeKey: String
     public let stack: Stack
@@ -35,10 +35,10 @@ public class Defaults<T: DefaultsValueProtocol> {
     
     public var value: T? {
         get {
-            return T.getDefaultsValue(stack.userDefaults, key: actualStoreKey)
+            return T.getOneStoreValue(stack.userDefaults, key: actualStoreKey)
         }
         set {
-            newValue?.setDefaultsValue(stack.userDefaults, key: actualStoreKey)
+            newValue?.setOneStoreValue(stack.userDefaults, key: actualStoreKey)
         }
     }
     

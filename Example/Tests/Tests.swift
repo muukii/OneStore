@@ -18,8 +18,8 @@ class Tests: XCTestCase {
         
         let stack = Stack(userDefaults: NSUserDefaults.standardUserDefaults(), namespace: "me")
         
-        let defaults_a = Defaults<String>("string")
-        let defaults_b = Defaults<String>("string", stack: stack)
+        let defaults_a = OneStore<String>("string")
+        let defaults_b = OneStore<String>("string", stack: stack)
         
         let object = "hahahahaha"
         defaults_a.value = object
@@ -35,7 +35,7 @@ class Tests: XCTestCase {
     
     func testString() {
         
-        let defaults = Defaults<String>("string")
+        let defaults = OneStore<String>("string")
         
         let object = "hahahahaha"
         defaults.value = object
@@ -46,7 +46,7 @@ class Tests: XCTestCase {
     
     func testInt() {
         
-        let defaults = Defaults<Int>("int")
+        let defaults = OneStore<Int>("int")
         let object = 1080
         defaults.value = object
         print(defaults.value, object)
@@ -56,7 +56,7 @@ class Tests: XCTestCase {
     
     func testInt32() {
         
-        let defaults = Defaults<Int32>("int32")
+        let defaults = OneStore<Int32>("int32")
         let object: Int32 = 1080
         defaults.value = object
         print(defaults.value, object)
@@ -66,7 +66,7 @@ class Tests: XCTestCase {
     
     func testInt64() {
         
-        let defaults = Defaults<Int64>("int64")
+        let defaults = OneStore<Int64>("int64")
         let object: Int64 = 1080
         defaults.value = object
         print(defaults.value, object)
@@ -76,7 +76,7 @@ class Tests: XCTestCase {
     
     func testBool() {
         
-        let defaults = Defaults<Bool>("bool")
+        let defaults = OneStore<Bool>("bool")
         let object = true
         defaults.value = object
         print(defaults.value, object)
@@ -86,7 +86,7 @@ class Tests: XCTestCase {
     
     func testDouble() {
         
-        let defaults = Defaults<Double>("double")
+        let defaults = OneStore<Double>("double")
         let object: Double = 1.2345678923456789
         defaults.value = object
         print(defaults.value, object)
@@ -96,7 +96,7 @@ class Tests: XCTestCase {
     
     func testFloat() {
         
-        let defaults = Defaults<Float>("float")
+        let defaults = OneStore<Float>("float")
         let object: Float = 1.2345678923456789
         defaults.value = object
         print(defaults.value, object)
@@ -106,7 +106,7 @@ class Tests: XCTestCase {
     
     func testUIColor() {
         
-        let defaults = Defaults<UIColor>("uicolor")
+        let defaults = OneStore<UIColor>("uicolor")
         let object = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 0.1)
         defaults.value = object
         print(defaults.value, object)
@@ -115,7 +115,7 @@ class Tests: XCTestCase {
     
     func testUIColorSubclass() {
         
-        let defaults = Defaults<MyColor>("mycolor")
+        let defaults = OneStore<MyColor>("mycolor")
         let object = MyColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 0.1)
         defaults.value = object
         print(defaults.value, object)
@@ -124,7 +124,7 @@ class Tests: XCTestCase {
     
     func testNSIndexPath() {
         
-        let defaults = Defaults<NSIndexPath>("indexPath")
+        let defaults = OneStore<NSIndexPath>("indexPath")
         let object = NSIndexPath(forRow: 1, inSection: 0)
         defaults.value = object
         print(defaults.value, object)

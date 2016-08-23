@@ -20,82 +20,82 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-public protocol DefaultsValueProtocol {
+public protocol OneStoreValueProtocol {
     
-    static func getDefaultsValue(userDefaults: NSUserDefaults, key: String) -> Self?
-    func setDefaultsValue(userDefaults: NSUserDefaults, key: String)
+    static func getOneStoreValue(userDefaults: NSUserDefaults, key: String) -> Self?
+    func setOneStoreValue(userDefaults: NSUserDefaults, key: String)
 }
 
-extension Int: DefaultsValueProtocol {
+extension Int: OneStoreValueProtocol {
     
-    public static func getDefaultsValue(userDefaults: NSUserDefaults, key: String) -> Int? {
+    public static func getOneStoreValue(userDefaults: NSUserDefaults, key: String) -> Int? {
         return (userDefaults.objectForKey(key) as? NSNumber)?.integerValue
     }
     
-    public func setDefaultsValue(userDefaults: NSUserDefaults, key: String) {
+    public func setOneStoreValue(userDefaults: NSUserDefaults, key: String) {
         userDefaults.setInteger(self, forKey: key)
     }
 }
 
-extension Int32: DefaultsValueProtocol {
+extension Int32: OneStoreValueProtocol {
     
-    public static func getDefaultsValue(userDefaults: NSUserDefaults, key: String) -> Int32? {
+    public static func getOneStoreValue(userDefaults: NSUserDefaults, key: String) -> Int32? {
         return (userDefaults.objectForKey(key) as? NSNumber)?.intValue
     }
     
-    public func setDefaultsValue(userDefaults: NSUserDefaults, key: String) {
+    public func setOneStoreValue(userDefaults: NSUserDefaults, key: String) {
         userDefaults.setObject(NSNumber(int: self), forKey: key)
     }
 }
 
-extension Int64: DefaultsValueProtocol {
+extension Int64: OneStoreValueProtocol {
     
-    public static func getDefaultsValue(userDefaults: NSUserDefaults, key: String) -> Int64? {
+    public static func getOneStoreValue(userDefaults: NSUserDefaults, key: String) -> Int64? {
         return (userDefaults.objectForKey(key) as? NSNumber)?.longLongValue
     }
     
-    public func setDefaultsValue(userDefaults: NSUserDefaults, key: String) {
+    public func setOneStoreValue(userDefaults: NSUserDefaults, key: String) {
         userDefaults.setObject(NSNumber(longLong: self), forKey: key)
     }
 }
 
-extension Float: DefaultsValueProtocol {
+extension Float: OneStoreValueProtocol {
     
-    public static func getDefaultsValue(userDefaults: NSUserDefaults, key: String) -> Float? {
+    public static func getOneStoreValue(userDefaults: NSUserDefaults, key: String) -> Float? {
         return (userDefaults.objectForKey(key) as? NSNumber)?.floatValue
     }
     
-    public func setDefaultsValue(userDefaults: NSUserDefaults, key: String) {
+    public func setOneStoreValue(userDefaults: NSUserDefaults, key: String) {
         userDefaults.setObject(NSNumber(float: self), forKey: key)
     }
 }
 
-extension Double: DefaultsValueProtocol {
+extension Double: OneStoreValueProtocol {
     
-    public static func getDefaultsValue(userDefaults: NSUserDefaults, key: String) -> Double? {
+    public static func getOneStoreValue(userDefaults: NSUserDefaults, key: String) -> Double? {
         return (userDefaults.objectForKey(key) as? NSNumber)?.doubleValue
     }
     
-    public func setDefaultsValue(userDefaults: NSUserDefaults, key: String) {
+    public func setOneStoreValue(userDefaults: NSUserDefaults, key: String) {
         userDefaults.setObject(NSNumber(double: self), forKey: key)
     }
 }
 
-extension Bool: DefaultsValueProtocol {
+extension Bool: OneStoreValueProtocol {
     
-    public static func getDefaultsValue(userDefaults: NSUserDefaults, key: String) -> Bool? {
+    public static func getOneStoreValue(userDefaults: NSUserDefaults, key: String) -> Bool? {
         return (userDefaults.objectForKey(key) as? NSNumber)?.boolValue
     }
     
-    public func setDefaultsValue(userDefaults: NSUserDefaults, key: String) {
+    public func setOneStoreValue(userDefaults: NSUserDefaults, key: String) {
         userDefaults.setObject(NSNumber(bool: self), forKey: key)
     }
 }
 
 // TODO: Object must have NSCoding protocol.
-extension NSObject: DefaultsValueProtocol {
+extension NSObject: OneStoreValueProtocol {
     
-    public class func getDefaultsValue(userDefaults: NSUserDefaults, key: String) -> Self? {
+    public class func getOneStoreValue(userDefaults: NSUserDefaults, key: String) -> Self? {
         
         return userDefaults.objectForKey(key)
             .flatMap { $0 as? NSData }
@@ -103,18 +103,18 @@ extension NSObject: DefaultsValueProtocol {
             .flatMap { unsafeBitCast($0, self) }
     }
     
-    public func setDefaultsValue(userDefaults: NSUserDefaults, key: String) {        
+    public func setOneStoreValue(userDefaults: NSUserDefaults, key: String) {        
         userDefaults.setObject(NSKeyedArchiver.archivedDataWithRootObject(self), forKey: key)
     }
 }
 
-extension String: DefaultsValueProtocol {
+extension String: OneStoreValueProtocol {
     
-    public static func getDefaultsValue(userDefaults: NSUserDefaults, key: String) -> String? {
+    public static func getOneStoreValue(userDefaults: NSUserDefaults, key: String) -> String? {
         return userDefaults.stringForKey(key)
     }
     
-    public func setDefaultsValue(userDefaults: NSUserDefaults, key: String) {
+    public func setOneStoreValue(userDefaults: NSUserDefaults, key: String) {
         userDefaults.setObject(self, forKey: key)
     }
 }
