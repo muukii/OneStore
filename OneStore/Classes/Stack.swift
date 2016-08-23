@@ -29,7 +29,7 @@ public struct Stack {
     public let userDefaults: NSUserDefaults
     public let namespace: String
     
-    public init(userDefaults: NSUserDefaults, namespace: String?) {
+    public init(userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults(), namespace: String?) {
         
         self.userDefaults = userDefaults
         self.namespace = "__OneStore__\((namespace ?? "default"))"
