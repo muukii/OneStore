@@ -5,6 +5,8 @@
 [![License](https://img.shields.io/cocoapods/l/OneStore.svg?style=flat)](http://cocoapods.org/pods/OneStore)
 [![Platform](https://img.shields.io/cocoapods/p/OneStore.svg?style=flat)](http://cocoapods.org/pods/OneStore)
 
+**One value store proxy for NSUserDefaults**
+
 ## Example
 
 **Basic**
