@@ -92,6 +92,7 @@ extension Bool: DefaultsValueProtocol {
     }
 }
 
+// TODO: Object must have NSCoding protocol.
 extension NSObject: DefaultsValueProtocol {
     
     public class func getDefaultsValue(userDefaults: NSUserDefaults, key: String) -> Self? {
