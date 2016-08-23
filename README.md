@@ -16,7 +16,7 @@ let name = Defaults<String>("name")
 let age = Defaults<Int>("age")
 
 name.value = "muukii"
-age.value = "18"
+age.value = 18
 ```
 
 **Specify Stack**
@@ -27,7 +27,7 @@ let name = Defaults<String>("name", stack: stack)
 let age = Defaults<Int>("age", stack: stack)
 
 name.value = "muukii"
-age.value = "18"
+age.value = 18
 ```
 
 **Remove object**
