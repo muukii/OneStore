@@ -5,7 +5,11 @@
 [![License](https://img.shields.io/cocoapods/l/OneStore.svg?style=flat)](http://cocoapods.org/pods/OneStore)
 [![Platform](https://img.shields.io/cocoapods/p/OneStore.svg?style=flat)](http://cocoapods.org/pods/OneStore)
 
-**One value store proxy for NSUserDefaults**
+A single value proxy for NSUserDefaults, with clean API.
+
+With OneStore…
+- Create one proxy(an `OneStore` object) for each NSUserDefaults value.
+- Multiple NSUserDefaults and namespaces are supported with `Stacks`.
 
 ## Example
 
