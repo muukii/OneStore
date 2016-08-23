@@ -1,0 +1,16 @@
+PODS:
+  - OneStore (0.1.0)
+
+DEPENDENCIES:
+  - OneStore (from `../`)
+
+EXTERNAL SOURCES:
+  OneStore:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  OneStore: c31fafb86664aa68aeffa92c60d6ada567dcabd8
+
+PODFILE CHECKSUM: 546a3954e76b5661f45f1d4716cc9c79e92e7e22
+
+COCOAPODS: 1.0.1

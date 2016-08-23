@@ -7,9 +7,64 @@
 
 ## Example
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+**Basic**
+
+```swift
+let name = Defaults<String>("name")
+let age = Defaults<Int>("age")
+
+name.value = "muukii"
+age.value = "18"
+```
+
+**Specify Stack**
+
+```swift
+let stack = Stack(userDefaults: NSUserDefaults.standardUserDefaults(), namespace: "me")
+let name = Defaults<String>("name", stack: stack)
+let age = Defaults<Int>("age", stack: stack)
+
+name.value = "muukii"
+age.value = "18"
+```
+
+**Remove object**
+
+```swift
+let name = Defaults<String>("name", stack: stack)
+name.value = nil
+```
+
+**Remove all objects on namespace**
+
+```swift
+
+let stack = Stack(userDefaults: NSUserDefaults.standardUserDefaults(), namespace: "me")
+let name = Defaults<String>("name", stack: stack)
+
+stack.removeAllObjectsOnNamespace()
+/* or */
+name.stack.removeAllObjectsOnNamespace()
+```
+
+**Realworld example**
+
+```swift
+
+enum Me {
+
+    static let name = Defaults<String>("name", stack: Me.stack)
+    static let age = Defaults<Int>("age", stack: Me.stack)
+
+    private static let stack = Stack(userDefaults: NSUserDefaults.standardUserDefaults(), namespace: "me")
+}
+
+Me.name.value = "muukii"
+```
 
 ## Requirements
+
+Swift2.2
 
 ## Installation
 
