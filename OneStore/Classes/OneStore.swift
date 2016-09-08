@@ -22,10 +22,10 @@
 
 import Foundation
 
-public class OneStore<T: OneStoreValueProtocol> {
+open class OneStore<T: OneStoreValueProtocol> {
     
-    public let storeKey: String
-    public let stack: Stack
+    open let storeKey: String
+    open let stack: Stack
     
     public init(_ key: String, stack: Stack = Stack.defaultStack) {
         
@@ -33,7 +33,7 @@ public class OneStore<T: OneStoreValueProtocol> {
         self.stack = stack
     }
     
-    public var value: T? {
+    open var value: T? {
         get {
             return T.getOneStoreValue(stack.userDefaults, key: actualStoreKey)
         }
@@ -42,7 +42,7 @@ public class OneStore<T: OneStoreValueProtocol> {
         }
     }
     
-    private var actualStoreKey: String {
+    fileprivate var actualStoreKey: String {
         return "\(stack.namespace).\(storeKey)"
     }
 }

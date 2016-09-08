@@ -16,7 +16,7 @@ class Tests: XCTestCase {
     
     func testRemoveAll() {
         
-        let stack = Stack(userDefaults: NSUserDefaults.standardUserDefaults(), namespace: "me")
+        let stack = Stack(userDefaults: UserDefaults.standard, namespace: "me")
         
         let defaults_a = OneStore<String>("string")
         let defaults_b = OneStore<String>("string", stack: stack)
@@ -117,15 +117,6 @@ class Tests: XCTestCase {
         
         let defaults = OneStore<MyColor>("mycolor")
         let object = MyColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 0.1)
-        defaults.value = object
-        print(defaults.value, object)
-        XCTAssert(defaults.value != nil)
-    }
-    
-    func testNSIndexPath() {
-        
-        let defaults = OneStore<NSIndexPath>("indexPath")
-        let object = NSIndexPath(forRow: 1, inSection: 0)
         defaults.value = object
         print(defaults.value, object)
         XCTAssert(defaults.value != nil)

@@ -24,12 +24,12 @@ import Foundation
 
 public struct Stack {
     
-    public static var defaultStack: Stack = Stack(userDefaults: NSUserDefaults.standardUserDefaults(), namespace: nil)
+    public static var defaultStack: Stack = Stack(userDefaults: UserDefaults.standard, namespace: nil)
     
-    public let userDefaults: NSUserDefaults
+    public let userDefaults: UserDefaults
     public let namespace: String
     
-    public init(userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults(), namespace: String?) {
+    public init(userDefaults: UserDefaults = UserDefaults.standard, namespace: String?) {
         
         self.userDefaults = userDefaults
         self.namespace = "__OneStore__\((namespace ?? "default"))"
@@ -45,7 +45,7 @@ public struct Stack {
         
         userDefaults.dictionaryRepresentation().forEach { key, object in
             if key.hasPrefix(namespace) {
-                userDefaults.removeObjectForKey(key)
+                userDefaults.removeObject(forKey: key)
             }
         }
     }
