@@ -44,7 +44,7 @@ extension Int32: OneStoreValueProtocol {
     }
     
     public func setOneStoreValue(_ userDefaults: UserDefaults, key: String) {
-        userDefaults.set(NSNumber(value: self as Int32), forKey: key)
+        userDefaults.set(NSNumber(value: self), forKey: key)
     }
 }
 
@@ -55,7 +55,7 @@ extension Int64: OneStoreValueProtocol {
     }
     
     public func setOneStoreValue(_ userDefaults: UserDefaults, key: String) {
-        userDefaults.set(NSNumber(value: self as Int64), forKey: key)
+        userDefaults.set(NSNumber(value: self), forKey: key)
     }
 }
 
@@ -66,7 +66,7 @@ extension Float: OneStoreValueProtocol {
     }
     
     public func setOneStoreValue(_ userDefaults: UserDefaults, key: String) {
-        userDefaults.set(NSNumber(value: self as Float), forKey: key)
+        userDefaults.set(NSNumber(value: self), forKey: key)
     }
 }
 
@@ -77,7 +77,7 @@ extension Double: OneStoreValueProtocol {
     }
     
     public func setOneStoreValue(_ userDefaults: UserDefaults, key: String) {
-        userDefaults.set(NSNumber(value: self as Double), forKey: key)
+        userDefaults.set(NSNumber(value: self), forKey: key)
     }
 }
 
@@ -88,7 +88,7 @@ extension Bool: OneStoreValueProtocol {
     }
     
     public func setOneStoreValue(_ userDefaults: UserDefaults, key: String) {
-        userDefaults.set(NSNumber(value: self as Bool), forKey: key)
+        userDefaults.set(NSNumber(value: self), forKey: key)
     }
 }
 
