@@ -12,4 +12,5 @@ Pod::Spec.new do |s|
   s.tvos.deployment_target = '9.2'
 
   s.source_files = 'OneStore/Classes/**/*'
+  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '3.0' }
 end
