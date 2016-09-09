@@ -1,0 +1,6 @@
+framework module OneStore {
+  umbrella header "OneStore-umbrella.h"
+
+  export *
+  module * { export * }
+}
