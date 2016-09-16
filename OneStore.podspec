@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.social_media_url = 'https://twitter.com/muukii0803'
 
   s.ios.deployment_target = '8.0'
-  s.tvos.deployment_target = '9.2'
+  s.watchos.deployment_target = '2.0'
 
   s.source_files = 'OneStore/Classes/**/*'
   s.pod_target_xcconfig = { 'SWIFT_VERSION' => '3.0' }
