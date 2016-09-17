@@ -4,6 +4,7 @@
 [![Version](https://img.shields.io/cocoapods/v/OneStore.svg?style=flat)](http://cocoapods.org/pods/OneStore)
 [![License](https://img.shields.io/cocoapods/l/OneStore.svg?style=flat)](http://cocoapods.org/pods/OneStore)
 [![Platform](https://img.shields.io/cocoapods/p/OneStore.svg?style=flat)](http://cocoapods.org/pods/OneStore)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 A single value proxy for NSUserDefaults, with clean API.
 
