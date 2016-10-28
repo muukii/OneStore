@@ -71,7 +71,7 @@ Me.name.value = "muukii"
 
 ## Requirements
 
-Swift2.2
+Swift 3.0
 
 ## Installation
 
