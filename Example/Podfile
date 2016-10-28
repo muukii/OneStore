@@ -1,6 +1,0 @@
-use_frameworks!
-target 'OneStore_Tests' do
-  pod 'OneStore', :path => '../'
-  
-  
-end

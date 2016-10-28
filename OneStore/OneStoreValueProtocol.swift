@@ -92,26 +92,20 @@ extension Bool: OneStoreValueProtocol {
     }
 }
 
-// TODO: Object must have NSCoding protocol.
-extension NSObject: OneStoreValueProtocol {
-    
-    public class func getOneStoreValue(_ userDefaults: UserDefaults, key: String) -> Self? {
-        
-        return userDefaults.object(forKey: key)
-            .flatMap { $0 as? Data }
-            .flatMap { NSKeyedUnarchiver.unarchiveObject(with: $0) }
-            .flatMap { unsafeBitCast($0, to: self) }
-    }
-    
-    public func setOneStoreValue(_ userDefaults: UserDefaults, key: String) {        
-        userDefaults.set(NSKeyedArchiver.archivedData(withRootObject: self), forKey: key)
-    }
-}
-
 extension String: OneStoreValueProtocol {
     
     public static func getOneStoreValue(_ userDefaults: UserDefaults, key: String) -> String? {
         return userDefaults.string(forKey: key)
+    }
+    
+    public func setOneStoreValue(_ userDefaults: UserDefaults, key: String) {
+        userDefaults.set(self, forKey: key)
+    }
+}
+
+extension Data: OneStoreValueProtocol {
+    public static func getOneStoreValue(_ userDefaults: UserDefaults, key: String) -> Data? {
+        return userDefaults.data(forKey: key)
     }
     
     public func setOneStoreValue(_ userDefaults: UserDefaults, key: String) {

@@ -24,7 +24,7 @@ import Foundation
 
 public struct Stack {
     
-    public static var defaultStack: Stack = Stack(userDefaults: UserDefaults.standard, namespace: nil)
+    public static var defaultStack: Stack = .init(userDefaults: UserDefaults.standard, namespace: nil)
     
     public let userDefaults: UserDefaults
     public let namespace: String
@@ -45,6 +45,7 @@ public struct Stack {
         
         userDefaults.dictionaryRepresentation().forEach { key, object in
             if key.hasPrefix(namespace) {
+                userDefaults.set(nil, forKey: key)
                 userDefaults.removeObject(forKey: key)
             }
         }

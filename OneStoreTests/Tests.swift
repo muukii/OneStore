@@ -103,26 +103,4 @@ class Tests: XCTestCase {
         XCTAssert(defaults.value != nil)
         XCTAssertEqual(defaults.value, object)
     }
-    
-    func testUIColor() {
-        
-        let defaults = OneStore<UIColor>("uicolor")
-        let object = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 0.1)
-        defaults.value = object
-        print(defaults.value, object)
-        XCTAssert(defaults.value != nil)
-    }
-    
-    func testUIColorSubclass() {
-        
-        let defaults = OneStore<MyColor>("mycolor")
-        let object = MyColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 0.1)
-        defaults.value = object
-        print(defaults.value, object)
-        XCTAssert(defaults.value != nil)
-    }
-    
-    class MyColor: UIColor {
-        
-    }
 }
