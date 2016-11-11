@@ -24,15 +24,15 @@ import Foundation
 
 public struct Stack {
     
-    public static var defaultStack: Stack = .init(userDefaults: UserDefaults.standard, namespace: nil)
+    public static var defaultStack: Stack = .init(userDefaults: UserDefaults.standard)
     
     public let userDefaults: UserDefaults
     public let namespace: String
     
-    public init(userDefaults: UserDefaults = UserDefaults.standard, namespace: String?) {
+    public init(userDefaults: UserDefaults = UserDefaults.standard, namespace: String = "onestore") {
         
         self.userDefaults = userDefaults
-        self.namespace = "__OneStore__\((namespace ?? "default"))"
+        self.namespace = namespace
     }
     
     // synchronize is deprecated
