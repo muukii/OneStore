@@ -422,6 +422,7 @@
 				4BC39CA61DC30A6200CB0834 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4BC39CA71DC30A6200CB0834 /* Build configuration list for PBXNativeTarget "OneStoreTests" */ = {
 			isa = XCConfigurationList;
@@ -430,6 +431,7 @@
 				4BC39CA91DC30A6200CB0834 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
