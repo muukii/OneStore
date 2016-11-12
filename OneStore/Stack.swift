@@ -23,31 +23,31 @@
 import Foundation
 
 public struct Stack {
-    
-    public static var defaultStack: Stack = .init(userDefaults: UserDefaults.standard)
-    
-    public let userDefaults: UserDefaults
-    public let namespace: String
-    
-    public init(userDefaults: UserDefaults = UserDefaults.standard, namespace: String = "onestore") {
-        
-        self.userDefaults = userDefaults
-        self.namespace = namespace
-    }
-    
+
+  public static var defaultStack: Stack = .init(userDefaults: UserDefaults.standard)
+
+  public let userDefaults: UserDefaults
+  public let namespace: String
+
+  public init(userDefaults: UserDefaults = UserDefaults.standard, namespace: String = "onestore") {
+
+    self.userDefaults = userDefaults
+    self.namespace = namespace
+  }
+
+  // synchronize is deprecated
+  public func synchronize() {
     // synchronize is deprecated
-    public func synchronize() {
-        // synchronize is deprecated
-        userDefaults.synchronize()
+    userDefaults.synchronize()
+  }
+
+  public func removeAllObjectsOnNamespace() {
+
+    userDefaults.dictionaryRepresentation().forEach { key, object in
+      if key.hasPrefix(namespace) {
+        userDefaults.set(nil, forKey: key)
+        userDefaults.removeObject(forKey: key)
+      }
     }
-    
-    public func removeAllObjectsOnNamespace() {
-        
-        userDefaults.dictionaryRepresentation().forEach { key, object in
-            if key.hasPrefix(namespace) {
-                userDefaults.set(nil, forKey: key)
-                userDefaults.removeObject(forKey: key)
-            }
-        }
-    }
+  }
 }

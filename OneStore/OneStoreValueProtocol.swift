@@ -21,94 +21,94 @@
 // THE SOFTWARE.
 
 public protocol OneStoreValueProtocol {
-    
-    static func getOneStoreValue(_ userDefaults: UserDefaults, key: String) -> Self?
-    func setOneStoreValue(_ userDefaults: UserDefaults, key: String)
+
+  static func getOneStoreValue(_ userDefaults: UserDefaults, key: String) -> Self?
+  func setOneStoreValue(_ userDefaults: UserDefaults, key: String)
 }
 
 extension Int: OneStoreValueProtocol {
-    
-    public static func getOneStoreValue(_ userDefaults: UserDefaults, key: String) -> Int? {
-        return (userDefaults.object(forKey: key) as? NSNumber)?.intValue
-    }
-    
-    public func setOneStoreValue(_ userDefaults: UserDefaults, key: String) {
-        userDefaults.set(self, forKey: key)
-    }
+
+  public static func getOneStoreValue(_ userDefaults: UserDefaults, key: String) -> Int? {
+    return (userDefaults.object(forKey: key) as? NSNumber)?.intValue
+  }
+
+  public func setOneStoreValue(_ userDefaults: UserDefaults, key: String) {
+    userDefaults.set(self, forKey: key)
+  }
 }
 
 extension Int32: OneStoreValueProtocol {
-    
-    public static func getOneStoreValue(_ userDefaults: UserDefaults, key: String) -> Int32? {
-        return (userDefaults.object(forKey: key) as? NSNumber)?.int32Value
-    }
-    
-    public func setOneStoreValue(_ userDefaults: UserDefaults, key: String) {
-        userDefaults.set(NSNumber(value: self), forKey: key)
-    }
+
+  public static func getOneStoreValue(_ userDefaults: UserDefaults, key: String) -> Int32? {
+    return (userDefaults.object(forKey: key) as? NSNumber)?.int32Value
+  }
+
+  public func setOneStoreValue(_ userDefaults: UserDefaults, key: String) {
+    userDefaults.set(NSNumber(value: self), forKey: key)
+  }
 }
 
 extension Int64: OneStoreValueProtocol {
-    
-    public static func getOneStoreValue(_ userDefaults: UserDefaults, key: String) -> Int64? {
-        return (userDefaults.object(forKey: key) as? NSNumber)?.int64Value
-    }
-    
-    public func setOneStoreValue(_ userDefaults: UserDefaults, key: String) {
-        userDefaults.set(NSNumber(value: self), forKey: key)
-    }
+
+  public static func getOneStoreValue(_ userDefaults: UserDefaults, key: String) -> Int64? {
+    return (userDefaults.object(forKey: key) as? NSNumber)?.int64Value
+  }
+
+  public func setOneStoreValue(_ userDefaults: UserDefaults, key: String) {
+    userDefaults.set(NSNumber(value: self), forKey: key)
+  }
 }
 
 extension Float: OneStoreValueProtocol {
-    
-    public static func getOneStoreValue(_ userDefaults: UserDefaults, key: String) -> Float? {
-        return (userDefaults.object(forKey: key) as? NSNumber)?.floatValue
-    }
-    
-    public func setOneStoreValue(_ userDefaults: UserDefaults, key: String) {
-        userDefaults.set(NSNumber(value: self), forKey: key)
-    }
+
+  public static func getOneStoreValue(_ userDefaults: UserDefaults, key: String) -> Float? {
+    return (userDefaults.object(forKey: key) as? NSNumber)?.floatValue
+  }
+
+  public func setOneStoreValue(_ userDefaults: UserDefaults, key: String) {
+    userDefaults.set(NSNumber(value: self), forKey: key)
+  }
 }
 
 extension Double: OneStoreValueProtocol {
-    
-    public static func getOneStoreValue(_ userDefaults: UserDefaults, key: String) -> Double? {
-        return (userDefaults.object(forKey: key) as? NSNumber)?.doubleValue
-    }
-    
-    public func setOneStoreValue(_ userDefaults: UserDefaults, key: String) {
-        userDefaults.set(NSNumber(value: self), forKey: key)
-    }
+
+  public static func getOneStoreValue(_ userDefaults: UserDefaults, key: String) -> Double? {
+    return (userDefaults.object(forKey: key) as? NSNumber)?.doubleValue
+  }
+
+  public func setOneStoreValue(_ userDefaults: UserDefaults, key: String) {
+    userDefaults.set(NSNumber(value: self), forKey: key)
+  }
 }
 
 extension Bool: OneStoreValueProtocol {
-    
-    public static func getOneStoreValue(_ userDefaults: UserDefaults, key: String) -> Bool? {
-        return (userDefaults.object(forKey: key) as? NSNumber)?.boolValue
-    }
-    
-    public func setOneStoreValue(_ userDefaults: UserDefaults, key: String) {
-        userDefaults.set(NSNumber(value: self), forKey: key)
-    }
+
+  public static func getOneStoreValue(_ userDefaults: UserDefaults, key: String) -> Bool? {
+    return (userDefaults.object(forKey: key) as? NSNumber)?.boolValue
+  }
+
+  public func setOneStoreValue(_ userDefaults: UserDefaults, key: String) {
+    userDefaults.set(NSNumber(value: self), forKey: key)
+  }
 }
 
 extension String: OneStoreValueProtocol {
-    
-    public static func getOneStoreValue(_ userDefaults: UserDefaults, key: String) -> String? {
-        return userDefaults.string(forKey: key)
-    }
-    
-    public func setOneStoreValue(_ userDefaults: UserDefaults, key: String) {
-        userDefaults.set(self, forKey: key)
-    }
+
+  public static func getOneStoreValue(_ userDefaults: UserDefaults, key: String) -> String? {
+    return userDefaults.string(forKey: key)
+  }
+
+  public func setOneStoreValue(_ userDefaults: UserDefaults, key: String) {
+    userDefaults.set(self, forKey: key)
+  }
 }
 
 extension Data: OneStoreValueProtocol {
-    public static func getOneStoreValue(_ userDefaults: UserDefaults, key: String) -> Data? {
-        return userDefaults.data(forKey: key)
-    }
-    
-    public func setOneStoreValue(_ userDefaults: UserDefaults, key: String) {
-        userDefaults.set(self, forKey: key)
-    }
+  public static func getOneStoreValue(_ userDefaults: UserDefaults, key: String) -> Data? {
+    return userDefaults.data(forKey: key)
+  }
+
+  public func setOneStoreValue(_ userDefaults: UserDefaults, key: String) {
+    userDefaults.set(self, forKey: key)
+  }
 }

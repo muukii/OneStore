@@ -23,28 +23,34 @@
 import Foundation
 
 open class OneStore<T: OneStoreValueProtocol> {
-    
-    open let storeKey: String
-    open let stack: Stack
-    
-    public init(_ key: String, stack: Stack = Stack.defaultStack) {
-        
-        self.storeKey = key
-        self.stack = stack
+
+  open let storeKey: String
+  open let stack: Stack
+
+  public init(_ key: String, stack: Stack = Stack.defaultStack) {
+
+    self.storeKey = key
+    self.stack = stack
+  }
+
+  public init<T: RawRepresentable>(_ key: T, stack: Stack = Stack.defaultStack) where T.RawValue == String {
+
+    self.storeKey = key.rawValue
+    self.stack = stack
+  }
+
+  open var value: T? {
+    get {
+      return T.getOneStoreValue(stack.userDefaults, key: actualStoreKey)
     }
-    
-    open var value: T? {
-        get {
-            return T.getOneStoreValue(stack.userDefaults, key: actualStoreKey)
-        }
-        set {
-            newValue?.setOneStoreValue(stack.userDefaults, key: actualStoreKey)
-        }
+    set {
+      newValue?.setOneStoreValue(stack.userDefaults, key: actualStoreKey)
     }
-    
-    fileprivate var actualStoreKey: String {
-        return "\(stack.namespace).\(storeKey)"
-    }
+  }
+
+  fileprivate var actualStoreKey: String {
+    return "\(stack.namespace).\(storeKey)"
+  }
 }
 
 
