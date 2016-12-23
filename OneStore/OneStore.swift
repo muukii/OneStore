@@ -44,7 +44,7 @@ open class OneStore<T: OneStoreValueProtocol> {
 
   open var value: T? {
     get {
-      if synchronouslyOnMainThread {
+      if Thread.isMainThread == false && synchronouslyOnMainThread {
         return DispatchQueue.main.sync {
           return T.getOneStoreValue(stack.userDefaults, key: actualStoreKey)
         }
@@ -53,7 +53,7 @@ open class OneStore<T: OneStoreValueProtocol> {
       }
     }
     set {
-      if synchronouslyOnMainThread {
+      if Thread.isMainThread == false && synchronouslyOnMainThread {
         DispatchQueue.main.sync {
           newValue?.setOneStoreValue(stack.userDefaults, key: actualStoreKey)
         }
