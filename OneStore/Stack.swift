@@ -22,7 +22,7 @@
 
 import Foundation
 
-public struct Stack {
+public final class Stack {
 
   public static var defaultStack: Stack = .init(userDefaults: UserDefaults.standard)
 
@@ -44,9 +44,13 @@ public struct Stack {
   public func removeAllObjectsOnNamespace() {
 
     userDefaults.dictionaryRepresentation().forEach { key, object in
+      print("all:", key, namespace)
       if key.hasPrefix(namespace) {
-        userDefaults.set(nil, forKey: key)
+        print("remove: ", key, namespace)
+//        userDefaults.set(nil, forKey: key)
         userDefaults.removeObject(forKey: key)
+
+        print(userDefaults.object(forKey: key))
       }
     }
   }

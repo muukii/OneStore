@@ -14,6 +14,8 @@
 		4BC39CAE1DC30A7300CB0834 /* OneStoreValueProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC39CAB1DC30A7300CB0834 /* OneStoreValueProtocol.swift */; };
 		4BC39CAF1DC30A7300CB0834 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC39CAC1DC30A7300CB0834 /* Stack.swift */; };
 		4BC39CB11DC30E7700CB0834 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC39CB01DC30E7700CB0834 /* Tests.swift */; };
+		4BCA4DB61E659D1E0099D52A /* NonOptionalOneStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCA4DB51E659D1E0099D52A /* NonOptionalOneStore.swift */; };
+		4BCA4DB81E659D3D0099D52A /* NonOptionalOneStoreSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCA4DB71E659D3D0099D52A /* NonOptionalOneStoreSpec.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +39,8 @@
 		4BC39CAB1DC30A7300CB0834 /* OneStoreValueProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneStoreValueProtocol.swift; sourceTree = "<group>"; };
 		4BC39CAC1DC30A7300CB0834 /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 		4BC39CB01DC30E7700CB0834 /* Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		4BCA4DB51E659D1E0099D52A /* NonOptionalOneStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NonOptionalOneStore.swift; sourceTree = "<group>"; };
+		4BCA4DB71E659D3D0099D52A /* NonOptionalOneStoreSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NonOptionalOneStoreSpec.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				4BC39CAA1DC30A7300CB0834 /* OneStore.swift */,
+				4BCA4DB51E659D1E0099D52A /* NonOptionalOneStore.swift */,
 				4BC39CAB1DC30A7300CB0834 /* OneStoreValueProtocol.swift */,
 				4BC39CAC1DC30A7300CB0834 /* Stack.swift */,
 				4BC39C931DC30A6200CB0834 /* OneStore.h */,
@@ -92,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				4BC39CB01DC30E7700CB0834 /* Tests.swift */,
+				4BCA4DB71E659D3D0099D52A /* NonOptionalOneStoreSpec.swift */,
 				4BC39C9E1DC30A6200CB0834 /* OneStoreTests.swift */,
 				4BC39CA01DC30A6200CB0834 /* Info.plist */,
 			);
@@ -211,6 +217,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BCA4DB61E659D1E0099D52A /* NonOptionalOneStore.swift in Sources */,
 				4BC39CAE1DC30A7300CB0834 /* OneStoreValueProtocol.swift in Sources */,
 				4BC39CAF1DC30A7300CB0834 /* Stack.swift in Sources */,
 				4BC39CAD1DC30A7300CB0834 /* OneStore.swift in Sources */,
@@ -221,6 +228,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BCA4DB81E659D3D0099D52A /* NonOptionalOneStoreSpec.swift in Sources */,
 				4BC39C9F1DC30A6200CB0834 /* OneStoreTests.swift in Sources */,
 				4BC39CB11DC30E7700CB0834 /* Tests.swift in Sources */,
 			);
