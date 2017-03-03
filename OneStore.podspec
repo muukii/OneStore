@@ -1,5 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'OneStore'
+  s.version          = '0.6.0'
   s.summary          = 'One value store proxy for NSUserDefaults'
   s.homepage         = 'https://github.com/muukii/OneStore'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
@@ -10,6 +11,6 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '8.0'
   s.watchos.deployment_target = '2.0'
 
-  s.source_files = 'OneStore/Classes/**/*'
+  s.source_files = 'OneStore/**/*.swift'
   s.pod_target_xcconfig = { 'SWIFT_VERSION' => '3.0' }
 end
