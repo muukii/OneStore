@@ -27,8 +27,18 @@ open class OneStore<T: OneStoreValueProtocol> {
   open let storeKey: String
   open let stack: Stack
 
+  @available(*, deprecated, message: "Use readWriteOnMainThread")
+  open var synchronouslyOnMainThread: Bool {
+    get {
+      return readWriteOnMainThread
+    }
+    set {
+      readWriteOnMainThread = newValue
+    }
+  }
+
   /// Run get value, set value on "MainThread" synchronously.
-  open var synchronouslyOnMainThread: Bool = false
+  open var readWriteOnMainThread: Bool = true
 
   public init(_ key: String, stack: Stack = Stack.defaultStack) {
 
@@ -44,7 +54,7 @@ open class OneStore<T: OneStoreValueProtocol> {
 
   open var value: T? {
     get {
-      if Thread.isMainThread == false && synchronouslyOnMainThread {
+      if Thread.isMainThread == false && readWriteOnMainThread {
         return DispatchQueue.main.sync {
           return T.getOneStoreValue(stack.userDefaults, key: actualStoreKey)
         }
@@ -53,7 +63,7 @@ open class OneStore<T: OneStoreValueProtocol> {
       }
     }
     set {
-      if Thread.isMainThread == false && synchronouslyOnMainThread {
+      if Thread.isMainThread == false && readWriteOnMainThread {
         DispatchQueue.main.sync {
           newValue?.setOneStoreValue(stack.userDefaults, key: actualStoreKey)
         }
