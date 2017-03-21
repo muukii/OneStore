@@ -42,11 +42,15 @@ open class OneStore<T: OneStoreValueProtocol> {
 
   public init(_ key: String, stack: Stack = Stack.defaultStack) {
 
+    precondition(key.isEmpty == false, "key must be not empty")
+
     self.storeKey = key
     self.stack = stack
   }
 
   public init<T: RawRepresentable>(_ key: T, stack: Stack = Stack.defaultStack) where T.RawValue == String {
+
+    precondition(key.rawValue.isEmpty == false, "key must be not empty")
 
     self.storeKey = key.rawValue
     self.stack = stack
