@@ -10,7 +10,7 @@ import Foundation
 
 open class NonOptionalOneStore<T: OneStoreValueProtocol> {
 
-  private let source: OneStore<T>
+  public let source: OneStore<T>
   private let defaultValue: T
 
   init(defaultValue: T, source: OneStore<T>) {

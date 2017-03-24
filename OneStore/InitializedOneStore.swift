@@ -10,7 +10,7 @@ import Foundation
 
 open class InitializedOneStore<T: OneStoreValueProtocol> {
 
-  private let source: OneStore<T>
+  public let source: OneStore<T>
   private let initializeValue: T
 
   init(initializeValue: T, source: OneStore<T>) {
