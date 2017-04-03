@@ -22,7 +22,7 @@
 
 import Foundation
 
-open class OneStore<T: OneStoreValueProtocol> {
+open class OneStore<T: OneStoreValueProtocol>: OneStoreType {
 
   open let storeKey: String
   open let stack: Stack

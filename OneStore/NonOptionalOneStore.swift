@@ -8,7 +8,15 @@
 
 import Foundation
 
-open class NonOptionalOneStore<T: OneStoreValueProtocol> {
+open class NonOptionalOneStore<T: OneStoreValueProtocol>: OneStoreType {
+
+  public var storeKey: String {
+    return source.storeKey
+  }
+
+  public var stack: Stack {
+    return source.stack
+  }
 
   public let source: OneStore<T>
   private let defaultValue: T

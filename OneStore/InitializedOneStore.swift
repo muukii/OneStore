@@ -8,10 +8,18 @@
 
 import Foundation
 
-open class InitializedOneStore<T: OneStoreValueProtocol> {
+open class InitializedOneStore<T: OneStoreValueProtocol>: OneStoreType {
 
   public let source: OneStore<T>
   private let initializeValue: T
+
+  public var storeKey: String {
+    return source.storeKey
+  }
+
+  public var stack: Stack {
+    return source.stack
+  }
 
   init(initializeValue: T, source: OneStore<T>) {
     self.source = source

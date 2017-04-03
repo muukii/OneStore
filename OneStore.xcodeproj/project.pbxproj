@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B7F1CE41E9210D2005521BD /* OneStoreType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7F1CE31E9210D2005521BD /* OneStoreType.swift */; };
 		4BA05CF21E69222600D49C79 /* InitializedOneStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA05CF11E69222600D49C79 /* InitializedOneStore.swift */; };
 		4BA05CF41E6922F300D49C79 /* InitializedOneStoreSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA05CF31E6922F300D49C79 /* InitializedOneStoreSpec.swift */; };
 		4BC39C9A1DC30A6200CB0834 /* OneStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BC39C901DC30A6200CB0834 /* OneStore.framework */; };
@@ -31,6 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4B7F1CE31E9210D2005521BD /* OneStoreType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneStoreType.swift; sourceTree = "<group>"; };
 		4BA05CF11E69222600D49C79 /* InitializedOneStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitializedOneStore.swift; sourceTree = "<group>"; };
 		4BA05CF31E6922F300D49C79 /* InitializedOneStoreSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitializedOneStoreSpec.swift; sourceTree = "<group>"; };
 		4BC39C901DC30A6200CB0834 /* OneStore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OneStore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,6 +89,7 @@
 		4BC39C921DC30A6200CB0834 /* OneStore */ = {
 			isa = PBXGroup;
 			children = (
+				4B7F1CE31E9210D2005521BD /* OneStoreType.swift */,
 				4BC39CAA1DC30A7300CB0834 /* OneStore.swift */,
 				4BCA4DB51E659D1E0099D52A /* NonOptionalOneStore.swift */,
 				4BA05CF11E69222600D49C79 /* InitializedOneStore.swift */,
@@ -225,6 +228,7 @@
 			files = (
 				4BA05CF21E69222600D49C79 /* InitializedOneStore.swift in Sources */,
 				4BCA4DB61E659D1E0099D52A /* NonOptionalOneStore.swift in Sources */,
+				4B7F1CE41E9210D2005521BD /* OneStoreType.swift in Sources */,
 				4BC39CAE1DC30A7300CB0834 /* OneStoreValueProtocol.swift in Sources */,
 				4BC39CAF1DC30A7300CB0834 /* Stack.swift in Sources */,
 				4BC39CAD1DC30A7300CB0834 /* OneStore.swift in Sources */,
