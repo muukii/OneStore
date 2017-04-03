@@ -35,6 +35,10 @@ open class NonOptionalOneStore<T: OneStoreValueProtocol>: OneStoreType {
     }
   }
 
+  public convenience init<R: RawRepresentable>(stack: Stack, key: R, initializedValue: T) where R.RawValue == String {
+    self.init(stack: stack, key: key.rawValue, initializedValue: initializedValue)
+  }
+
   open var value: T {
     get {
       guard let value = source.value else {

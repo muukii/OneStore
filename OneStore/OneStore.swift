@@ -59,12 +59,8 @@ open class OneStore<T: OneStoreValueProtocol>: OneStoreType {
     }
   }
 
-  public init<T: RawRepresentable>(stack: Stack, key: T, initializedValue: T? = nil) where T.RawValue == String {
-
-    precondition(key.rawValue.isEmpty == false, "key must be not empty")
-
-    self.storeKey = key.rawValue
-    self.stack = stack
+  public convenience init<R: RawRepresentable>(stack: Stack, key: R, initializedValue: T? = nil) where R.RawValue == String {
+    self.init(stack: stack, key: key.rawValue, initializedValue: initializedValue)
   }
 
   open var value: T? {
