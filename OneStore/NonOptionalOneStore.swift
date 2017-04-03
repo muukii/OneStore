@@ -13,38 +13,38 @@ open class NonOptionalOneStore<T: OneStoreValueProtocol>: OneStoreType {
   public typealias Value = T
 
   public let source: OneStore<T>
-  private let defaultValue: T
+  private let initializedValue: T
 
-  public var storeKey: String {
+  public final var storeKey: String {
     return source.storeKey
   }
 
-  public var stack: Stack {
+  public final var stack: Stack {
     return source.stack
   }
 
-  public var rawStoreKey: String {
+  public final var rawStoreKey: String {
     return source.rawStoreKey
   }
 
-  init(defaultValue: T, source: OneStore<T>) {
-    self.source = source
-    self.defaultValue = defaultValue
+  init(stack: Stack, key: String, initializedValue: T) {
+    self.source = OneStore<T>(stack: stack, key: key, initializedValue: initializedValue)
+    self.initializedValue = initializedValue
+    if source.value == nil {
+      self.source.value = initializedValue
+    }
   }
 
   open var value: T {
     get {
-      return source.value ?? defaultValue
+      guard let value = source.value else {
+        assertionFailure("This feature has broken😭")
+        return initializedValue
+      }
+      return value
     }
     set {
       source.value = newValue
     }
-  }
-}
-
-extension OneStore {
-
-  open func whenNil(return v: T) -> NonOptionalOneStore<T> {
-    return NonOptionalOneStore<T>(defaultValue: v, source: self)
   }
 }

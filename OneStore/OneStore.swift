@@ -46,15 +46,20 @@ open class OneStore<T: OneStoreValueProtocol>: OneStoreType {
   /// Run get value, set value on "MainThread" synchronously.
   open var readWriteOnMainThread: Bool = true
 
-  public init(_ key: String, stack: Stack) {
+  public init(stack: Stack, key: String, initializedValue: T? = nil) {
 
     precondition(key.isEmpty == false, "key must be not empty")
 
     self.storeKey = key
     self.stack = stack
+
+    if let initializedValue = initializedValue, self.value == nil {
+      self.value = initializedValue
+      stack.synchronize()
+    }
   }
 
-  public init<T: RawRepresentable>(_ key: T, stack: Stack) where T.RawValue == String {
+  public init<T: RawRepresentable>(stack: Stack, key: T, initializedValue: T? = nil) where T.RawValue == String {
 
     precondition(key.rawValue.isEmpty == false, "key must be not empty")
 
