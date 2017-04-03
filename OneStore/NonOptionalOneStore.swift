@@ -10,6 +10,8 @@ import Foundation
 
 open class NonOptionalOneStore<T: OneStoreValueProtocol>: OneStoreType {
 
+  public typealias Value = T
+
   public let source: OneStore<T>
   private let defaultValue: T
 

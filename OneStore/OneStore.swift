@@ -24,6 +24,8 @@ import Foundation
 
 open class OneStore<T: OneStoreValueProtocol>: OneStoreType {
 
+  public typealias Value = T
+
   open let storeKey: String
   open let stack: Stack
 

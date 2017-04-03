@@ -10,6 +10,7 @@ import Foundation
 
 open class InitializedOneStore<T: OneStoreValueProtocol>: OneStoreType {
 
+  public typealias Value = T
 
   public let source: OneStore<T>
   private let initializeValue: T
