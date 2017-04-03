@@ -14,59 +14,61 @@ class Tests: XCTestCase {
     super.tearDown()
   }
 
+  let stack = Stack.init(namespace: "me.muukii.test")
+
   func testInitialValue() {
 
-    let boolStore = OneStore<Bool>("me.muukii.bool")
+    let boolStore = OneStore<Bool>("me.muukii.bool", stack: stack)
     XCTAssert(boolStore.value == nil)
   }
 
-  func testRemoveAllDefaultStack() {
-
-    let stack = Stack(userDefaults: UserDefaults.standard, namespace: "me")
-
-    let defaults_a = OneStore<String>("string.testRemoveAllDefaultStack")
-    let defaults_b = OneStore<String>("string.testRemoveAllDefaultStack", stack: stack)
-
-    let object = "hahahahaha"
-    defaults_a.value = object
-    defaults_b.value = object
-
-    XCTAssert(defaults_a.value != nil)
-    XCTAssert(defaults_b.value != nil)
-
-    XCTAssert(defaults_a.stack === Stack.defaultStack)
-
-    defaults_a.stack.removeAllObjectsOnNamespace()
-
-    XCTAssert(defaults_a.value == nil)
-    XCTAssert(defaults_b.value != nil)
-  }
-
-  func testRemoveAllMyStack() {
-
-    let stack = Stack(userDefaults: UserDefaults.standard, namespace: "me")
-
-    let defaults_a = OneStore<String>("string.testRemoveAllMyStack")
-    let defaults_b = OneStore<String>("string.testRemoveAllMyStack", stack: stack)
-
-    let object = "hahahahaha"
-    defaults_a.value = object
-    defaults_b.value = object
-
-    XCTAssert(defaults_a.value != nil)
-    XCTAssert(defaults_b.value != nil)
-
-    XCTAssert(defaults_a.stack === Stack.defaultStack)
-
-    defaults_b.stack.removeAllObjectsOnNamespace()
-
-    XCTAssert(defaults_a.value != nil)
-    XCTAssert(defaults_b.value == nil)
-  }
+//  func testRemoveAllDefaultStack() {
+//
+//    let _stack = Stack(userDefaults: UserDefaults.standard, namespace: "me")
+//
+//    let defaults_a = OneStore<String>("string.testRemoveAllDefaultStack", stack: stack)
+//    let defaults_b = OneStore<String>("string.testRemoveAllDefaultStack", stack: _stack)
+//
+//    let object = "hahahahaha"
+//    defaults_a.value = object
+//    defaults_b.value = object
+//
+//    XCTAssert(defaults_a.value != nil)
+//    XCTAssert(defaults_b.value != nil)
+//
+//    XCTAssert(defaults_a.stack === stack)
+//
+//    defaults_a.stack.removeAllObjectsOnNamespace()
+//
+//    XCTAssert(defaults_a.value == nil)
+//    XCTAssert(defaults_b.value != nil)
+//  }
+//
+//  func testRemoveAllMyStack() {
+//
+//    let _stack = Stack(userDefaults: UserDefaults.standard, namespace: "me")
+//
+//    let defaults_a = OneStore<String>("string.testRemoveAllMyStack", stack: stack)
+//    let defaults_b = OneStore<String>("string.testRemoveAllMyStack", stack: _stack)
+//
+//    let object = "hahahahaha"
+//    defaults_a.value = object
+//    defaults_b.value = object
+//
+//    XCTAssert(defaults_a.value != nil)
+//    XCTAssert(defaults_b.value != nil)
+//
+//    XCTAssert(defaults_a.stack === stack)
+//
+//    defaults_b.stack.removeAllObjectsOnNamespace()
+//
+//    XCTAssert(defaults_a.value != nil)
+//    XCTAssert(defaults_b.value == nil)
+//  }
 
   func testString() {
 
-    let defaults = OneStore<String>("string.testString")
+    let defaults = OneStore<String>("string.testString", stack: stack)
 
     let object = "hahahahaha"
     defaults.value = object
@@ -77,7 +79,7 @@ class Tests: XCTestCase {
 
   func testInt() {
 
-    let defaults = OneStore<Int>("int.testInt")
+    let defaults = OneStore<Int>("int.testInt", stack: stack)
     let object = 1080
     defaults.value = object
     print(defaults.value, object)
@@ -87,7 +89,7 @@ class Tests: XCTestCase {
 
   func testInt32() {
 
-    let defaults = OneStore<Int32>("int32.testInt32")
+    let defaults = OneStore<Int32>("int32.testInt32", stack: stack)
     let object: Int32 = 1080
     defaults.value = object
     print(defaults.value, object)
@@ -97,7 +99,7 @@ class Tests: XCTestCase {
 
   func testInt64() {
 
-    let defaults = OneStore<Int64>("int64.testInt64")
+    let defaults = OneStore<Int64>("int64.testInt64", stack: stack)
     let object: Int64 = 1080
     defaults.value = object
     print(defaults.value, object)
@@ -107,7 +109,7 @@ class Tests: XCTestCase {
 
   func testBool() {
 
-    let defaults = OneStore<Bool>("bool")
+    let defaults = OneStore<Bool>("bool", stack: stack)
     let object = true
     defaults.value = object
     print(defaults.value, object)
@@ -117,7 +119,7 @@ class Tests: XCTestCase {
 
   func testDouble() {
 
-    let defaults = OneStore<Double>("double")
+    let defaults = OneStore<Double>("double", stack: stack)
     let object: Double = 1.2345678923456789
     defaults.value = object
     print(defaults.value, object)
@@ -127,7 +129,7 @@ class Tests: XCTestCase {
 
   func testFloat() {
 
-    let defaults = OneStore<Float>("float")
+    let defaults = OneStore<Float>("float", stack: stack)
     let object: Float = 1.2345678923456789
     defaults.value = object
     print(defaults.value, object)

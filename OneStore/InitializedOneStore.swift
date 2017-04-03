@@ -10,6 +10,7 @@ import Foundation
 
 open class InitializedOneStore<T: OneStoreValueProtocol>: OneStoreType {
 
+
   public let source: OneStore<T>
   private let initializeValue: T
 
@@ -19,6 +20,10 @@ open class InitializedOneStore<T: OneStoreValueProtocol>: OneStoreType {
 
   public var stack: Stack {
     return source.stack
+  }
+
+  public var rawStoreKey: String {
+    return source.rawStoreKey
   }
 
   init(initializeValue: T, source: OneStore<T>) {

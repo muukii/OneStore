@@ -27,6 +27,10 @@ open class OneStore<T: OneStoreValueProtocol>: OneStoreType {
   open let storeKey: String
   open let stack: Stack
 
+  public final var rawStoreKey: String {
+    return "\(stack.domain).\(storeKey)"
+  }
+
   @available(*, deprecated, message: "Use readWriteOnMainThread")
   open var synchronouslyOnMainThread: Bool {
     get {
@@ -40,7 +44,7 @@ open class OneStore<T: OneStoreValueProtocol>: OneStoreType {
   /// Run get value, set value on "MainThread" synchronously.
   open var readWriteOnMainThread: Bool = true
 
-  public init(_ key: String, stack: Stack = Stack.defaultStack) {
+  public init(_ key: String, stack: Stack) {
 
     precondition(key.isEmpty == false, "key must be not empty")
 
@@ -48,7 +52,7 @@ open class OneStore<T: OneStoreValueProtocol>: OneStoreType {
     self.stack = stack
   }
 
-  public init<T: RawRepresentable>(_ key: T, stack: Stack = Stack.defaultStack) where T.RawValue == String {
+  public init<T: RawRepresentable>(_ key: T, stack: Stack) where T.RawValue == String {
 
     precondition(key.rawValue.isEmpty == false, "key must be not empty")
 
@@ -60,25 +64,21 @@ open class OneStore<T: OneStoreValueProtocol>: OneStoreType {
     get {
       if Thread.isMainThread == false && readWriteOnMainThread {
         return DispatchQueue.main.sync {
-          return T.getOneStoreValue(stack.userDefaults, key: actualStoreKey)
+          return T.getOneStoreValue(stack.userDefaults, key: rawStoreKey)
         }
       } else {
-        return T.getOneStoreValue(stack.userDefaults, key: actualStoreKey)
+        return T.getOneStoreValue(stack.userDefaults, key: rawStoreKey)
       }
     }
     set {
       if Thread.isMainThread == false && readWriteOnMainThread {
         DispatchQueue.main.sync {
-          newValue?.setOneStoreValue(stack.userDefaults, key: actualStoreKey)
+          newValue?.setOneStoreValue(stack.userDefaults, key: rawStoreKey)
         }
       } else {
-        newValue?.setOneStoreValue(stack.userDefaults, key: actualStoreKey)
+        newValue?.setOneStoreValue(stack.userDefaults, key: rawStoreKey)
       }
     }
-  }
-
-  fileprivate var actualStoreKey: String {
-    return "\(stack.namespace).\(storeKey)"
   }
 }
 

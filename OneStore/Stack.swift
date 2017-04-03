@@ -24,15 +24,13 @@ import Foundation
 
 public final class Stack {
 
-  public static var defaultStack: Stack = .init(userDefaults: UserDefaults.standard)
-
   public let userDefaults: UserDefaults
-  public let namespace: String
+  public let domain: String
 
-  public init(userDefaults: UserDefaults = UserDefaults.standard, namespace: String = "onestore") {
+  public init(userDefaults: UserDefaults = UserDefaults.standard, namespace: String) {
 
     self.userDefaults = userDefaults
-    self.namespace = namespace
+    self.domain = namespace
   }
 
   // synchronize is deprecated
@@ -41,12 +39,12 @@ public final class Stack {
     userDefaults.synchronize()
   }
 
-  public func removeAllObjectsOnNamespace() {
-
-    userDefaults.dictionaryRepresentation().forEach { key, object in
-      if key.hasPrefix(namespace) {
-        userDefaults.removeObject(forKey: key)
-      }
-    }
-  }
+//  public func removeAllObjectsOnNamespace() {
+//
+//    userDefaults.dictionaryRepresentation().forEach { key, object in
+//      if key.hasPrefix(domain) {
+//        userDefaults.removeObject(forKey: key)
+//      }
+//    }
+//  }
 }

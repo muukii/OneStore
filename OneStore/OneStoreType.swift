@@ -11,4 +11,5 @@ import Foundation
 public protocol OneStoreType {
   var storeKey: String { get }
   var stack: Stack { get }
+  var rawStoreKey: String { get }
 }

@@ -13,8 +13,10 @@ import XCTest
 
 class InitializedOneStoreSpec: XCTestCase {
 
+  let stack = Stack.init(namespace: "me.muukii.test")
+
   func testInitialize() {
-    let store = OneStore<String>("InitializedOneStoreSpec")
+    let store = OneStore<String>("InitializedOneStoreSpec", stack: stack)
     let i = store.initialize(value: "muukii")
 
     XCTAssertEqual(i.value, "muukii")

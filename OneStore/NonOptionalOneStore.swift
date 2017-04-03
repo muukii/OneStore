@@ -10,6 +10,9 @@ import Foundation
 
 open class NonOptionalOneStore<T: OneStoreValueProtocol>: OneStoreType {
 
+  public let source: OneStore<T>
+  private let defaultValue: T
+
   public var storeKey: String {
     return source.storeKey
   }
@@ -18,8 +21,9 @@ open class NonOptionalOneStore<T: OneStoreValueProtocol>: OneStoreType {
     return source.stack
   }
 
-  public let source: OneStore<T>
-  private let defaultValue: T
+  public var rawStoreKey: String {
+    return source.rawStoreKey
+  }
 
   init(defaultValue: T, source: OneStore<T>) {
     self.source = source

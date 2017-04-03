@@ -13,8 +13,10 @@ import XCTest
 
 class NonOptionalOneStore: XCTestCase {
 
+  let stack = Stack.init(namespace: "me.muukii.test")
+
   func testBool() {
-    let store = OneStore<Bool>("me.muukii.bool2").whenNil(return: true)
+    let store = OneStore<Bool>("me.muukii.bool2", stack: stack).whenNil(return: true)
     XCTAssertEqual(store.value, true)
   }
 }
