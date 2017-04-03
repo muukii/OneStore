@@ -27,7 +27,7 @@ open class NonOptionalOneStore<T: OneStoreValueProtocol>: OneStoreType {
     return source.rawStoreKey
   }
 
-  init(stack: Stack, key: String, initializedValue: T) {
+  public init(stack: Stack, key: String, initializedValue: T) {
     self.source = OneStore<T>(stack: stack, key: key, initializedValue: initializedValue)
     self.initializedValue = initializedValue
     if source.value == nil {
