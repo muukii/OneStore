@@ -45,6 +45,7 @@ open class OneStore<T: OneStoreValueProtocol>: OneStoreType {
     self.storeKey = key
     self.stack = stack
     self.initialValue = initialValue
+    stack.addManagedKey(rawStoreKey)
   }
 
   open var value: T? {
