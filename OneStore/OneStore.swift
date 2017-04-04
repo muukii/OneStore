@@ -63,7 +63,13 @@ open class OneStore<T: OneStoreValueProtocol>: OneStoreType {
 
   open var value: T? {
     get {
-      return T.getOneStoreValue(stack.userDefaults, key: rawStoreKey)
+      if Thread.isMainThread == false && writeOnMainThread {
+        return DispatchQueue.main.sync {
+          return T.getOneStoreValue(stack.userDefaults, key: rawStoreKey)
+        }
+      } else {
+        return T.getOneStoreValue(stack.userDefaults, key: rawStoreKey)
+      }
     }
     set {
       if Thread.isMainThread == false && writeOnMainThread {
