@@ -47,10 +47,6 @@ open class OneStore<T: OneStoreValueProtocol>: OneStoreType {
     self.initialValue = initialValue
   }
 
-  public convenience init<R: RawRepresentable>(stack: Stack, key: R, initialValue: T? = nil) where R.RawValue == String {
-    self.init(stack: stack, key: key.rawValue, initialValue: initialValue)
-  }
-
   open var value: T? {
     get {
 
