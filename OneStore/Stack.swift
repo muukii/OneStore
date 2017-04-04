@@ -27,6 +27,8 @@ public final class Stack {
   public let userDefaults: UserDefaults
   public let domain: String
 
+  private(set) public var managedKeys: [String] = []
+
   public init(userDefaults: UserDefaults = UserDefaults.standard, domain: String) {
 
     assert(domain.isEmpty == false, "Domain must be not empty")
@@ -41,6 +43,10 @@ public final class Stack {
     userDefaults.synchronize()
   }
 
+  public func removeManagedKeyObjects() {
+    managedKeys.forEach(remove(key: ))
+  }
+
   internal func remove(key: String) {
     userDefaults.removeObject(forKey: key)
     synchronize()
@@ -49,5 +55,9 @@ public final class Stack {
 
   internal func exists(key: String) -> Bool {
     return userDefaults.dictionaryRepresentation()[key] != nil
+  }
+
+  internal func addManagedKey(_ key: String) {
+    managedKeys.append(key)
   }
 }

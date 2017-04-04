@@ -17,6 +17,11 @@ class NonOptionalOneStoreSpec: XCTestCase {
 
   func testBool() {
     let store = NonOptionalOneStore<Bool>(stack: stack, key: "me.muukii.bool2", initialValue: true)
+    store.value = false
+    XCTAssertEqual(store.value, false)
+    store.value = true
     XCTAssertEqual(store.value, true)
+    store.value = false
+    XCTAssertEqual(store.value, false)
   }
 }

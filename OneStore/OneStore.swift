@@ -24,6 +24,8 @@ import Foundation
 
 open class OneStore<T: OneStoreValueProtocol>: OneStoreType {
 
+  public typealias Value = T
+
   open let storeKey: String
   open let stack: Stack
 
@@ -53,7 +55,13 @@ open class OneStore<T: OneStoreValueProtocol>: OneStoreType {
     get {
 
       if let initialValue = initialValue, T.getOneStoreValue(stack.userDefaults, key: rawStoreKey) == nil {
-        self.value = initialValue
+        if Thread.isMainThread == false && writeOnMainThread {
+          DispatchQueue.main.sync {
+            initialValue.setOneStoreValue(stack.userDefaults, key: rawStoreKey)
+          }
+        } else {
+          initialValue.setOneStoreValue(stack.userDefaults, key: rawStoreKey)
+        }
       }
 
       return T.getOneStoreValue(stack.userDefaults, key: rawStoreKey)
