@@ -45,6 +45,16 @@ open class OneStore<T: OneStoreValueProtocol>: OneStoreType {
     self.storeKey = key
     self.stack = stack
     self.initialValue = initialValue
+
+    if let initialValue = initialValue, T.getOneStoreValue(stack.userDefaults, key: rawStoreKey) == nil {
+      if Thread.isMainThread == false && writeOnMainThread {
+        DispatchQueue.main.sync {
+          initialValue.setOneStoreValue(stack.userDefaults, key: rawStoreKey)
+        }
+      } else {
+        initialValue.setOneStoreValue(stack.userDefaults, key: rawStoreKey)
+      }
+    }
   }
 
   public convenience init<R: RawRepresentable>(stack: Stack, key: R, initialValue: T? = nil) where R.RawValue == String {
@@ -53,17 +63,6 @@ open class OneStore<T: OneStoreValueProtocol>: OneStoreType {
 
   open var value: T? {
     get {
-
-      if let initialValue = initialValue, T.getOneStoreValue(stack.userDefaults, key: rawStoreKey) == nil {
-        if Thread.isMainThread == false && writeOnMainThread {
-          DispatchQueue.main.sync {
-            initialValue.setOneStoreValue(stack.userDefaults, key: rawStoreKey)
-          }
-        } else {
-          initialValue.setOneStoreValue(stack.userDefaults, key: rawStoreKey)
-        }
-      }
-
       return T.getOneStoreValue(stack.userDefaults, key: rawStoreKey)
     }
     set {
