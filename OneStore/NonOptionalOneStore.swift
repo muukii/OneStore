@@ -13,7 +13,7 @@ open class NonOptionalOneStore<T: OneStoreValueProtocol>: OneStoreType {
   public typealias Value = T
 
   public let source: OneStore<T>
-  private let initializedValue: T
+  private let initialValue: T
 
   public final var storeKey: String {
     return source.storeKey
@@ -27,23 +27,20 @@ open class NonOptionalOneStore<T: OneStoreValueProtocol>: OneStoreType {
     return source.rawStoreKey
   }
 
-  public init(stack: Stack, key: String, initializedValue: T) {
-    self.source = OneStore<T>(stack: stack, key: key, initializedValue: initializedValue)
-    self.initializedValue = initializedValue
-    if source.value == nil {
-      self.source.value = initializedValue
-    }
+  public init(stack: Stack, key: String, initialValue: T) {
+    self.source = OneStore<T>(stack: stack, key: key, initialValue: initialValue)
+    self.initialValue = initialValue
   }
 
-  public convenience init<R: RawRepresentable>(stack: Stack, key: R, initializedValue: T) where R.RawValue == String {
-    self.init(stack: stack, key: key.rawValue, initializedValue: initializedValue)
+  public convenience init<R: RawRepresentable>(stack: Stack, key: R, initialValue: T) where R.RawValue == String {
+    self.init(stack: stack, key: key.rawValue, initialValue: initialValue)
   }
 
   open var value: T {
     get {
       guard let value = source.value else {
         assertionFailure("This feature has broken😭")
-        return initializedValue
+        return initialValue
       }
       return value
     }

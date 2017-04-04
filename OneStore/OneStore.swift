@@ -33,48 +33,35 @@ open class OneStore<T: OneStoreValueProtocol>: OneStoreType {
     return "\(stack.domain).\(storeKey)"
   }
 
-  @available(*, deprecated, message: "Use readWriteOnMainThread")
-  open var synchronouslyOnMainThread: Bool {
-    get {
-      return readWriteOnMainThread
-    }
-    set {
-      readWriteOnMainThread = newValue
-    }
-  }
+  /// set value on "MainThread" synchronously.
+  open var writeOnMainThread: Bool = true
 
-  /// Run get value, set value on "MainThread" synchronously.
-  open var readWriteOnMainThread: Bool = true
+  private let initialValue: T?
 
-  public init(stack: Stack, key: String, initializedValue: T? = nil) {
+  public init(stack: Stack, key: String, initialValue: T? = nil) {
 
     precondition(key.isEmpty == false, "key must be not empty")
 
     self.storeKey = key
     self.stack = stack
-
-    if let initializedValue = initializedValue, self.value == nil {
-      self.value = initializedValue
-      stack.synchronize()
-    }
+    self.initialValue = initialValue
   }
 
-  public convenience init<R: RawRepresentable>(stack: Stack, key: R, initializedValue: T? = nil) where R.RawValue == String {
-    self.init(stack: stack, key: key.rawValue, initializedValue: initializedValue)
+  public convenience init<R: RawRepresentable>(stack: Stack, key: R, initialValue: T? = nil) where R.RawValue == String {
+    self.init(stack: stack, key: key.rawValue, initialValue: initialValue)
   }
 
   open var value: T? {
     get {
-      if Thread.isMainThread == false && readWriteOnMainThread {
-        return DispatchQueue.main.sync {
-          return T.getOneStoreValue(stack.userDefaults, key: rawStoreKey)
-        }
-      } else {
-        return T.getOneStoreValue(stack.userDefaults, key: rawStoreKey)
+
+      if let initialValue = initialValue, T.getOneStoreValue(stack.userDefaults, key: rawStoreKey) == nil {
+        self.value = initialValue
       }
+
+      return T.getOneStoreValue(stack.userDefaults, key: rawStoreKey)
     }
     set {
-      if Thread.isMainThread == false && readWriteOnMainThread {
+      if Thread.isMainThread == false && writeOnMainThread {
         DispatchQueue.main.sync {
           newValue?.setOneStoreValue(stack.userDefaults, key: rawStoreKey)
         }

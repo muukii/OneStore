@@ -14,3 +14,14 @@ public protocol OneStoreType {
   var stack: Stack { get }
   var rawStoreKey: String { get }
 }
+
+extension OneStoreType {
+
+  public func remove() {
+    stack.remove(key: rawStoreKey)
+  }
+
+  internal func exists() -> Bool {
+    return stack.exists(key: rawStoreKey)
+  }
+}

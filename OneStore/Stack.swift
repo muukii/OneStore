@@ -27,10 +27,12 @@ public final class Stack {
   public let userDefaults: UserDefaults
   public let domain: String
 
-  public init(userDefaults: UserDefaults = UserDefaults.standard, namespace: String) {
+  public init(userDefaults: UserDefaults = UserDefaults.standard, domain: String) {
+
+    assert(domain.isEmpty == false, "Domain must be not empty")
 
     self.userDefaults = userDefaults
-    self.domain = namespace
+    self.domain = domain
   }
 
   // synchronize is deprecated
@@ -39,12 +41,13 @@ public final class Stack {
     userDefaults.synchronize()
   }
 
-//  public func removeAllObjectsOnNamespace() {
-//
-//    userDefaults.dictionaryRepresentation().forEach { key, object in
-//      if key.hasPrefix(domain) {
-//        userDefaults.removeObject(forKey: key)
-//      }
-//    }
-//  }
+  internal func remove(key: String) {
+    userDefaults.removeObject(forKey: key)
+    synchronize()
+    precondition(userDefaults.object(forKey: key) == nil)
+  }
+
+  internal func exists(key: String) -> Bool {
+    return userDefaults.dictionaryRepresentation()[key] != nil
+  }
 }

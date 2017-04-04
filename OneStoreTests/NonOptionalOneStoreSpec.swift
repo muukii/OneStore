@@ -11,12 +11,12 @@ import XCTest
 
 @testable import OneStore
 
-class NonOptionalOneStore: XCTestCase {
+class NonOptionalOneStoreSpec: XCTestCase {
 
-  let stack = Stack.init(namespace: "me.muukii.test")
+  let stack = Stack.init(domain: "me.muukii.test")
 
   func testBool() {
-    let store = OneStore<Bool>("me.muukii.bool2", stack: stack).whenNil(return: true)
+    let store = NonOptionalOneStore<Bool>(stack: stack, key: "me.muukii.bool2", initialValue: true)
     XCTAssertEqual(store.value, true)
   }
 }
