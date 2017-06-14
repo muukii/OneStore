@@ -64,12 +64,17 @@ open class OneStore<T: OneStoreValueProtocol>: OneStoreType {
       return T.getOneStoreValue(stack.userDefaults, key: rawStoreKey)
     }
     set {
+      guard let value = newValue else {
+        stack.remove(key: rawStoreKey)
+        return
+      }
+      
       if Thread.isMainThread == false && writeOnMainThread {
         DispatchQueue.main.sync {
-          newValue?.setOneStoreValue(stack.userDefaults, key: rawStoreKey)
+          value.setOneStoreValue(stack.userDefaults, key: rawStoreKey)
         }
       } else {
-        newValue?.setOneStoreValue(stack.userDefaults, key: rawStoreKey)
+        value.setOneStoreValue(stack.userDefaults, key: rawStoreKey)
       }
     }
   }
