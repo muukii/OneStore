@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'OneStore'
-  s.version          = '0.6.0'
+  s.version          = '0.8.3'
   s.summary          = 'One value store proxy for NSUserDefaults'
   s.homepage         = 'https://github.com/muukii/OneStore'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
