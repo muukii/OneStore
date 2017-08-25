@@ -112,4 +112,12 @@ class Tests: XCTestCase {
     XCTAssert(defaults.value != nil)
     XCTAssertEqual(defaults.value, object)
   }
+
+  func testCodable() {
+
+    let d = CodableOneStore<String>.init(stack: stack, key: "foo")
+    d.value = "muukii"
+    XCTAssert(d.value != nil)
+    XCTAssertEqual(d.value, "muukii")
+  }
 }

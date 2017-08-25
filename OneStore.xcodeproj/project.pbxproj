@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B39F1A41F50840A00906915 /* CodableOneStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B39F1A31F50840A00906915 /* CodableOneStore.swift */; };
 		4B7F1CE41E9210D2005521BD /* OneStoreType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7F1CE31E9210D2005521BD /* OneStoreType.swift */; };
 		4BC39C9A1DC30A6200CB0834 /* OneStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BC39C901DC30A6200CB0834 /* OneStore.framework */; };
 		4BC39C9F1DC30A6200CB0834 /* OneStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC39C9E1DC30A6200CB0834 /* OneStoreTests.swift */; };
@@ -30,6 +31,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4B39F1A31F50840A00906915 /* CodableOneStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableOneStore.swift; sourceTree = "<group>"; };
 		4B7F1CE31E9210D2005521BD /* OneStoreType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneStoreType.swift; sourceTree = "<group>"; };
 		4BC39C901DC30A6200CB0834 /* OneStore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OneStore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BC39C931DC30A6200CB0834 /* OneStore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OneStore.h; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 			children = (
 				4B7F1CE31E9210D2005521BD /* OneStoreType.swift */,
 				4BC39CAA1DC30A7300CB0834 /* OneStore.swift */,
+				4B39F1A31F50840A00906915 /* CodableOneStore.swift */,
 				4BCA4DB51E659D1E0099D52A /* NonOptionalOneStore.swift */,
 				4BC39CAB1DC30A7300CB0834 /* OneStoreValueProtocol.swift */,
 				4BC39CAC1DC30A7300CB0834 /* Stack.swift */,
@@ -225,6 +228,7 @@
 				4BC39CAE1DC30A7300CB0834 /* OneStoreValueProtocol.swift in Sources */,
 				4BC39CAF1DC30A7300CB0834 /* Stack.swift in Sources */,
 				4BC39CAD1DC30A7300CB0834 /* OneStore.swift in Sources */,
+				4B39F1A41F50840A00906915 /* CodableOneStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,7 +371,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -387,7 +391,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = me.muuki.OneStore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
