@@ -35,6 +35,12 @@ open class OneStore<T: Codable> : OneStoreType {
 
   private let initializeValue: T?
 
+  /// Initialize
+  ///
+  /// - Parameters:
+  ///   - stack:
+  ///   - key:
+  ///   - initialize: If OneStore.value is nil, set specified value as initial value.
   public init(stack: Stack, key: String, initialize value: T? = nil) {
 
     precondition(key.isEmpty == false, "key must be not empty")
@@ -42,7 +48,9 @@ open class OneStore<T: Codable> : OneStoreType {
     self.storeKey = key
     self.stack = stack
     self.initializeValue = value
-    self.value = value
+    if self.value == nil {
+      self.value = value
+    }
     stack.addManagedKey(rawStoreKey)
   }
 

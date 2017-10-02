@@ -49,6 +49,19 @@ class Tests: XCTestCase {
     XCTAssert(string.exists() == false)
   }
 
+  func testInitialization() {
+
+    let first = OneStore<String>.init(stack: stack, key: "testInitialization", initialize: "abc")
+
+    XCTAssertEqual(first.value, "abc")
+
+    first.value = "def"
+
+    let second = OneStore<String>.init(stack: stack, key: "testInitialization", initialize: "abc")
+
+    XCTAssertEqual(second.value, "def")
+  }
+
   func testString() {
 
     let defaults = OneStore<String>(stack: stack, key: "string.testString")
