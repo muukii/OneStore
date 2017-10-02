@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		4B7F1CE41E9210D2005521BD /* OneStoreType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7F1CE31E9210D2005521BD /* OneStoreType.swift */; };
+		4B8DB37B1F82459B00312734 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8DB37A1F82459B00312734 /* Box.swift */; };
+		4B9D4EB91F828FB5009F8159 /* ReservedOneStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9D4EB81F828FB5009F8159 /* ReservedOneStore.swift */; };
 		4BC39C9A1DC30A6200CB0834 /* OneStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BC39C901DC30A6200CB0834 /* OneStore.framework */; };
-		4BC39C9F1DC30A6200CB0834 /* OneStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC39C9E1DC30A6200CB0834 /* OneStoreTests.swift */; };
 		4BC39CA11DC30A6200CB0834 /* OneStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BC39C931DC30A6200CB0834 /* OneStore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4BC39CAD1DC30A7300CB0834 /* OneStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC39CAA1DC30A7300CB0834 /* OneStore.swift */; };
-		4BC39CAE1DC30A7300CB0834 /* OneStoreValueProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC39CAB1DC30A7300CB0834 /* OneStoreValueProtocol.swift */; };
 		4BC39CAF1DC30A7300CB0834 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC39CAC1DC30A7300CB0834 /* Stack.swift */; };
 		4BC39CB11DC30E7700CB0834 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC39CB01DC30E7700CB0834 /* Tests.swift */; };
 		4BCA4DB61E659D1E0099D52A /* NonOptionalOneStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCA4DB51E659D1E0099D52A /* NonOptionalOneStore.swift */; };
@@ -31,14 +31,14 @@
 
 /* Begin PBXFileReference section */
 		4B7F1CE31E9210D2005521BD /* OneStoreType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneStoreType.swift; sourceTree = "<group>"; };
+		4B8DB37A1F82459B00312734 /* Box.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
+		4B9D4EB81F828FB5009F8159 /* ReservedOneStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservedOneStore.swift; sourceTree = "<group>"; };
 		4BC39C901DC30A6200CB0834 /* OneStore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OneStore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BC39C931DC30A6200CB0834 /* OneStore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OneStore.h; sourceTree = "<group>"; };
 		4BC39C941DC30A6200CB0834 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4BC39C991DC30A6200CB0834 /* OneStoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OneStoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4BC39C9E1DC30A6200CB0834 /* OneStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneStoreTests.swift; sourceTree = "<group>"; };
 		4BC39CA01DC30A6200CB0834 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4BC39CAA1DC30A7300CB0834 /* OneStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneStore.swift; sourceTree = "<group>"; };
-		4BC39CAB1DC30A7300CB0834 /* OneStoreValueProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneStoreValueProtocol.swift; sourceTree = "<group>"; };
 		4BC39CAC1DC30A7300CB0834 /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 		4BC39CB01DC30E7700CB0834 /* Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		4BCA4DB51E659D1E0099D52A /* NonOptionalOneStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NonOptionalOneStore.swift; sourceTree = "<group>"; };
@@ -87,8 +87,9 @@
 			children = (
 				4B7F1CE31E9210D2005521BD /* OneStoreType.swift */,
 				4BC39CAA1DC30A7300CB0834 /* OneStore.swift */,
+				4B8DB37A1F82459B00312734 /* Box.swift */,
 				4BCA4DB51E659D1E0099D52A /* NonOptionalOneStore.swift */,
-				4BC39CAB1DC30A7300CB0834 /* OneStoreValueProtocol.swift */,
+				4B9D4EB81F828FB5009F8159 /* ReservedOneStore.swift */,
 				4BC39CAC1DC30A7300CB0834 /* Stack.swift */,
 				4BC39C931DC30A6200CB0834 /* OneStore.h */,
 				4BC39C941DC30A6200CB0834 /* Info.plist */,
@@ -101,7 +102,6 @@
 			children = (
 				4BC39CB01DC30E7700CB0834 /* Tests.swift */,
 				4BCA4DB71E659D3D0099D52A /* NonOptionalOneStoreSpec.swift */,
-				4BC39C9E1DC30A6200CB0834 /* OneStoreTests.swift */,
 				4BC39CA01DC30A6200CB0834 /* Info.plist */,
 			);
 			path = OneStoreTests;
@@ -169,7 +169,6 @@
 				TargetAttributes = {
 					4BC39C8F1DC30A6200CB0834 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = KU2QEJ9K3Z;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
@@ -222,8 +221,9 @@
 			files = (
 				4BCA4DB61E659D1E0099D52A /* NonOptionalOneStore.swift in Sources */,
 				4B7F1CE41E9210D2005521BD /* OneStoreType.swift in Sources */,
-				4BC39CAE1DC30A7300CB0834 /* OneStoreValueProtocol.swift in Sources */,
+				4B8DB37B1F82459B00312734 /* Box.swift in Sources */,
 				4BC39CAF1DC30A7300CB0834 /* Stack.swift in Sources */,
+				4B9D4EB91F828FB5009F8159 /* ReservedOneStore.swift in Sources */,
 				4BC39CAD1DC30A7300CB0834 /* OneStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -233,7 +233,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BCA4DB81E659D3D0099D52A /* NonOptionalOneStoreSpec.swift in Sources */,
-				4BC39C9F1DC30A6200CB0834 /* OneStoreTests.swift in Sources */,
 				4BC39CB11DC30E7700CB0834 /* Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -358,7 +357,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = KU2QEJ9K3Z;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -379,7 +378,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = KU2QEJ9K3Z;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";

@@ -22,7 +22,7 @@
 
 import Foundation
 
-open class OneStore<T: OneStoreValueProtocol>: OneStoreType {
+open class OneStore<T: Codable> : OneStoreType {
 
   public typealias Value = T
 
@@ -33,49 +33,75 @@ open class OneStore<T: OneStoreValueProtocol>: OneStoreType {
     return "\(stack.domain).\(storeKey)"
   }
 
-  /// set value on "MainThread" synchronously.
-  open var writeOnMainThread: Bool = true
+  private let initializeValue: T?
 
-  private let initialValue: T?
-
-  public init(stack: Stack, key: String, initialValue: T? = nil) {
+  public init(stack: Stack, key: String, initialize value: T? = nil) {
 
     precondition(key.isEmpty == false, "key must be not empty")
 
     self.storeKey = key
     self.stack = stack
-    self.initialValue = initialValue
+    self.initializeValue = value
+    self.value = value
     stack.addManagedKey(rawStoreKey)
   }
 
   open var value: T? {
     get {
 
-      if let initialValue = initialValue, T.getOneStoreValue(stack.userDefaults, key: rawStoreKey) == nil {
-        if Thread.isMainThread == false && writeOnMainThread {
-          DispatchQueue.main.sync {
-            initialValue.setOneStoreValue(stack.userDefaults, key: rawStoreKey)
-          }
-        } else {
-          initialValue.setOneStoreValue(stack.userDefaults, key: rawStoreKey)
-        }
+      if isPrimitive(type: T.self) {
+        return stack.userDefaults.value(forKey: rawStoreKey) as? T
       }
 
-      return T.getOneStoreValue(stack.userDefaults, key: rawStoreKey)
+      guard let data = stack.userDefaults.data(forKey: rawStoreKey) else {
+        return nil
+      }
+
+      do {
+        let decoder = JSONDecoder()
+        let decoded = try decoder.decode(Box<T>.self, from: data)
+        return decoded.value
+      } catch {
+        assertionFailure("OneStore Error : \(error)")
+        return nil
+      }
     }
     set {
       guard let value = newValue else {
         stack.remove(key: rawStoreKey)
         return
       }
-      
-      if Thread.isMainThread == false && writeOnMainThread {
-        DispatchQueue.main.sync {
-          value.setOneStoreValue(stack.userDefaults, key: rawStoreKey)
-        }
-      } else {
-        value.setOneStoreValue(stack.userDefaults, key: rawStoreKey)
+
+      if isPrimitive(type: T.self) {
+        stack.userDefaults.set(value, forKey: rawStoreKey)
+        return
       }
+
+      do {
+        let encoder = JSONEncoder()
+        let encoded = try encoder.encode(Box(value))
+        stack.userDefaults.set(encoded, forKey: rawStoreKey)
+      } catch {
+        assertionFailure("OneStore Error : \(error)")
+      }
+    }
+  }
+
+  public func reset() {
+    value = initializeValue
+  }
+
+  private func isPrimitive<ValueType>(type: ValueType.Type) -> Bool {
+    switch type {
+    case 
+    is String.Type,
+    is Bool.Type,
+    is Int.Type,
+    is Float.Type,
+    is Double.Type:
+      return true
+    default:
+      return false
     }
   }
 }

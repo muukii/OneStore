@@ -24,26 +24,26 @@ class Tests: XCTestCase {
 
   func testInitialValue2() {
 
-    let boolStore = OneStore<Bool>(stack: stack, key: "me.muukii.testInitialValue2", initialValue: false)
+    let boolStore = OneStore<Bool>(stack: stack, key: "me.muukii.testInitialValue2", initialize: false)
     XCTAssert(boolStore.value == false)
   }
 
-  func testRemove() {
+  func testRemoveHasInitializedValue() {
 
-    let string = OneStore(stack: stack, key: "me.muukii.testRemove", initialValue: "hiroshi")
+    let string = OneStore(stack: stack, key: "me.muukii.testRemove", initialize: "hiroshi")
     XCTAssert(string.value == "hiroshi")
-    string.remove()
-    XCTAssert(string.exists() == false)
+    string.reset()
+    XCTAssert(string.exists() == true)
     XCTAssert(string.value == "hiroshi")
     XCTAssert(string.exists() == true)
   }
 
-  func testRemove2() {
+  func testRemoveWithoutInitializedValue() {
 
     let string = OneStore<String>(stack: stack, key: "me.muukii.testRemove2")
     string.value = "hiroshi"
     XCTAssert(string.value == "hiroshi")
-    string.remove()
+    string.reset()
     XCTAssert(string.exists() == false)
     XCTAssert(string.value == nil)
     XCTAssert(string.exists() == false)
@@ -111,5 +111,26 @@ class Tests: XCTestCase {
     defaults.value = object
     XCTAssert(defaults.value != nil)
     XCTAssertEqual(defaults.value, object)
+  }
+
+  func testCodable() {
+
+    struct MyModel : Codable {
+      let name: String
+      let number: Int
+    }
+
+    let defaults = OneStore<MyModel>(stack: stack, key: "codable")
+
+    let m = MyModel(name: "muukii", number: 24)
+    defaults.value = m
+
+    guard let v = defaults.value else {
+      XCTFail()
+      return
+    }
+
+    XCTAssertEqual(v.name, "muukii")
+    XCTAssertEqual(v.number, 24)
   }
 }
