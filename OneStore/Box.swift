@@ -1,5 +1,5 @@
 //
-// NonOptionalOneStore.swift
+// Box.swift
 //
 // Copyright (c) 2017 muukii
 //
@@ -20,45 +20,12 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-
 import Foundation
 
-open class NonOptionalOneStore<T: Codable> : OneStoreType {
+struct Box<T: Codable> : Codable {
+  let value: T
 
-  public let source: OneStore<T>
-  private let initialValue: T
-
-  public final var storeKey: String {
-    return source.storeKey
-  }
-
-  public final var stack: Stack {
-    return source.stack
-  }
-
-  public final var rawStoreKey: String {
-    return source.rawStoreKey
-  }
-
-  open var value: T {
-    get {
-      guard let value = source.value else {
-        assertionFailure("This feature has broken😭")
-        return initialValue
-      }
-      return value
-    }
-    set {
-      source.value = newValue
-    }
-  }
-
-  public init(stack: Stack, key: String, initialize value: T) {
-    self.source = OneStore<T>(stack: stack, key: key, initialize: value)
-    self.initialValue = value
-  }
-
-  public func reset() {
-    source.reset()
+  init(_ value: T) {
+    self.value = value
   }
 }
