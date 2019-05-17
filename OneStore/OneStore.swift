@@ -26,8 +26,8 @@ open class OneStore<T: Codable> : OneStoreType {
 
   public typealias Value = T
 
-  open let storeKey: String
-  open let stack: Stack
+  public let storeKey: String
+  public let stack: Stack
 
   public final var rawStoreKey: String {
     return "\(stack.domain).\(storeKey)"
