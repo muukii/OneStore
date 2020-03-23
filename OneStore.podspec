@@ -9,7 +9,8 @@ Pod::Spec.new do |s|
   s.social_media_url = 'https://twitter.com/muukii_app'
 
   s.ios.deployment_target = '10.0'
-  s.watchos.deployment_target = '2.0'
+  s.osx.deployment_target = '10.13'
+  s.watchos.deployment_target = '3.0'
 
   s.source_files = 'OneStore/**/*.swift'
 end
