@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/muukii/OneStore.git', :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/muukii_app'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '10.0'
   s.watchos.deployment_target = '2.0'
 
   s.source_files = 'OneStore/**/*.swift'
