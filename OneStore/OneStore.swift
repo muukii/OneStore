@@ -21,6 +21,7 @@
 // THE SOFTWARE.
 
 import Foundation
+import os.lock
 
 open class OneStore<T: Codable> : OneStoreType {
 
@@ -28,12 +29,19 @@ open class OneStore<T: Codable> : OneStoreType {
 
   public let storeKey: String
   public let stack: Stack
+  
+  private let decoder = JSONDecoder()
+  private let encoder = JSONEncoder()
+  
+  private var _cached: T?
 
   public final var rawStoreKey: String {
     return "\(stack.domain).\(storeKey)"
   }
 
-  private let initializeValue: T?
+  private let makeInitialValue: () -> T?
+  
+  private var lock = os_unfair_lock_s()
 
   /// Initialize
   ///
@@ -41,62 +49,78 @@ open class OneStore<T: Codable> : OneStoreType {
   ///   - stack:
   ///   - key:
   ///   - initialize: If OneStore.value is nil, set specified value as initial value.
-  public init(stack: Stack, key: String, initialize value: T? = nil) {
+  public init(stack: Stack, key: String, makeInitialValue: @escaping () -> T? = { nil }) {
 
     precondition(key.isEmpty == false, "key must be not empty")
 
     self.storeKey = key
     self.stack = stack
-    self.initializeValue = value
-    if self.value == nil {
-      self.value = value
-    }
+    self.makeInitialValue = makeInitialValue
     stack.addManagedKey(rawStoreKey)
   }
 
   open var value: T? {
-    get {
-
-      if isPrimitive(type: T.self) {
-        return stack.userDefaults.value(forKey: rawStoreKey) as? T
-      }
-
-      guard let data = stack.userDefaults.data(forKey: rawStoreKey) else {
-        return nil
-      }
-
-      do {
-        let decoder = JSONDecoder()
-        let decoded = try decoder.decode(Box<T>.self, from: data)
-        return decoded.value
-      } catch {
-        assertionFailure("OneStore Error : \(error)")
-        return nil
-      }
+    get {      
+      os_unfair_lock_lock(&lock); defer { os_unfair_lock_unlock(&lock) }
+      return getValue()
     }
     set {
-      guard let value = newValue else {
-        stack.remove(key: rawStoreKey)
-        return
-      }
-
-      if isPrimitive(type: T.self) {
-        stack.userDefaults.set(value, forKey: rawStoreKey)
-        return
-      }
-
-      do {
-        let encoder = JSONEncoder()
-        let encoded = try encoder.encode(Box(value))
-        stack.userDefaults.set(encoded, forKey: rawStoreKey)
-      } catch {
-        assertionFailure("OneStore Error : \(error)")
-      }
+      os_unfair_lock_lock(&lock); defer { os_unfair_lock_unlock(&lock) }
+      setValue(newValue: newValue)
+    }
+  }
+  
+  @inline(__always)
+  private func getValue() -> T? {
+    if let cached = _cached {
+      return cached
+    }
+    
+    if stack.userDefaults.object(forKey: rawStoreKey) == nil {
+      setValue(newValue: makeInitialValue())
+    }
+    
+    if isPrimitive(type: T.self) {
+      return stack.userDefaults.value(forKey: rawStoreKey) as? T
+    }
+    
+    guard let data = stack.userDefaults.data(forKey: rawStoreKey) else {
+      return nil
+    }
+    
+    do {
+      let decoded = try decoder.decode(Box<T>.self, from: data)
+      return decoded.value
+    } catch {
+      assertionFailure("OneStore Error : \(error)")
+      return nil
+    }
+  }
+  
+  @inline(__always)
+  private func setValue(newValue: T?) {
+    _cached = nil
+    
+    guard let value = newValue else {
+      stack.remove(key: rawStoreKey)
+      return
+    }
+    
+    if isPrimitive(type: T.self) {
+      stack.userDefaults.set(value, forKey: rawStoreKey)
+      return
+    }
+    
+    do {
+      let encoded = try encoder.encode(Box(value))
+      stack.userDefaults.set(encoded, forKey: rawStoreKey)
+    } catch {
+      assertionFailure("OneStore Error : \(error)")
     }
   }
 
   public func reset() {
-    value = initializeValue
+    value = makeInitialValue()
   }
 
   private func isPrimitive<ValueType>(type: ValueType.Type) -> Bool {
@@ -105,6 +129,15 @@ open class OneStore<T: Codable> : OneStoreType {
     is String.Type,
     is Bool.Type,
     is Int.Type,
+    is Int8.Type,
+    is Int16.Type,
+    is Int32.Type,
+    is Int64.Type,
+    is UInt.Type,
+    is UInt8.Type,
+    is UInt16.Type,
+    is UInt32.Type,
+    is UInt64.Type,
     is Float.Type,
     is Double.Type:
       return true

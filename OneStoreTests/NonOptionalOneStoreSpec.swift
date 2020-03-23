@@ -19,7 +19,7 @@ class NonOptionalOneStoreSpec: XCTestCase {
     let store = NonOptionalOneStore<Bool>(
       stack: stack,
       key: "me.muukii.bool2",
-      initialize: true
+      makeInitialValue: { true }
     )
     
     store.value = false

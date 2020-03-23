@@ -24,13 +24,13 @@ class Tests: XCTestCase {
 
   func testInitialValue2() {
 
-    let boolStore = OneStore<Bool>(stack: stack, key: "me.muukii.testInitialValue2", initialize: false)
+    let boolStore = OneStore<Bool>(stack: stack, key: "me.muukii.testInitialValue2", makeInitialValue: { false })
     XCTAssert(boolStore.value == false)
   }
 
   func testRemoveHasInitializedValue() {
 
-    let string = OneStore(stack: stack, key: "me.muukii.testRemove", initialize: "hiroshi")
+    let string = OneStore(stack: stack, key: "me.muukii.testRemove", makeInitialValue: { "hiroshi" })
     XCTAssert(string.value == "hiroshi")
     string.reset()
     XCTAssert(string.exists() == true)
@@ -51,13 +51,13 @@ class Tests: XCTestCase {
 
   func testInitialization() {
 
-    let first = OneStore<String>.init(stack: stack, key: "testInitialization", initialize: "abc")
+    let first = OneStore<String>.init(stack: stack, key: "testInitialization", makeInitialValue: { "abc" })
 
     XCTAssertEqual(first.value, "abc")
 
     first.value = "def"
 
-    let second = OneStore<String>.init(stack: stack, key: "testInitialization", initialize: "abc")
+    let second = OneStore<String>.init(stack: stack, key: "testInitialization", makeInitialValue: { "abc" })
 
     XCTAssertEqual(second.value, "def")
   }

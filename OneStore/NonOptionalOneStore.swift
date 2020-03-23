@@ -26,7 +26,8 @@ import Foundation
 open class NonOptionalOneStore<T: Codable> : OneStoreType {
 
   public let source: OneStore<T>
-  private let initialValue: T
+  
+  private let _makeInitialValue: () -> T
 
   public final var storeKey: String {
     return source.storeKey
@@ -44,7 +45,7 @@ open class NonOptionalOneStore<T: Codable> : OneStoreType {
     get {
       guard let value = source.value else {
         assertionFailure("This feature has broken😭")
-        return initialValue
+        return _makeInitialValue()
       }
       return value
     }
@@ -53,9 +54,9 @@ open class NonOptionalOneStore<T: Codable> : OneStoreType {
     }
   }
 
-  public init(stack: Stack, key: String, initialize value: T) {
-    self.source = OneStore<T>(stack: stack, key: key, initialize: value)
-    self.initialValue = value
+  public init(stack: Stack, key: String, makeInitialValue: @escaping () -> T) {
+    self.source = OneStore<T>(stack: stack, key: key, makeInitialValue: makeInitialValue)
+    self._makeInitialValue = makeInitialValue
   }
 
   public func reset() {
