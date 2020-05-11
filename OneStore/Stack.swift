@@ -35,7 +35,7 @@ public final class Stack {
     }
     return managedKeys
   }
-  private let queue = DispatchQueue(label: "managedKeys", attributes: .concurrent)
+  private let queue = DispatchQueue(label: "OneStore.managedKeys", attributes: .concurrent)
 
     public init(userDefaults: UserDefaults = UserDefaults.standard, domain: String) {
 
@@ -52,7 +52,7 @@ public final class Stack {
   }
 
   public func removeManagedKeyObjects() {
-    self.managedKeys.forEach(self.remove(key: ))
+    managedKeys.forEach(remove(key: ))
   }
 
   internal func remove(key: String) {
