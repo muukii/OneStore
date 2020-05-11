@@ -27,9 +27,17 @@ public final class Stack {
   public let userDefaults: UserDefaults
   public let domain: String
 
-  private(set) public var managedKeys: [String] = []
+  private var _managedKeys: [String] = []
+  public var managedKeys: [String] {
+    var managedKeys: [String]!
+    queue.sync {
+        managedKeys = _managedKeys
+    }
+    return managedKeys
+  }
+  private let queue = DispatchQueue(label: "managedKeys", attributes: .concurrent)
 
-  public init(userDefaults: UserDefaults = UserDefaults.standard, domain: String) {
+    public init(userDefaults: UserDefaults = UserDefaults.standard, domain: String) {
 
     assert(domain.isEmpty == false, "Domain must be not empty")
 
@@ -44,7 +52,7 @@ public final class Stack {
   }
 
   public func removeManagedKeyObjects() {
-    managedKeys.forEach(remove(key: ))
+    self.managedKeys.forEach(self.remove(key: ))
   }
 
   internal func remove(key: String) {
@@ -58,6 +66,8 @@ public final class Stack {
   }
 
   internal func addManagedKey(_ key: String) {
-    managedKeys.append(key)
+    queue.async(flags: .barrier) {
+        self._managedKeys.append(key)
+    }
   }
 }
